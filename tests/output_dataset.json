@@ -1,0 +1,48 @@
+{
+  "parametros_execucao": {
+    "pesos_objetivo": {
+      "alpha": 1.0,
+      "beta": 0.5,
+      "gamma": 50.0
+    },
+    "sa_parametros": {
+      "temperatura_inicial": 100.0,
+      "temperatura_minima": 0.01,
+      "taxa_resfriamento": 0.95,
+      "iteracoes_por_temperatura": 100,
+      "criterio_parada_iteracoes_globais": 5000
+    },
+    "periodos_por_dia": 5,
+    "dias_letivos": 5
+  },
+  "professores": [
+    {
+      "id_professor": "M1",
+      "carga_maxima": 20,
+      "indisponibilidades": [
+        1,
+        2,
+        14,
+        15
+      ]
+    }
+  ],
+  "turmas": [
+    "T101",
+    "T102"
+  ],
+  "demandas": [
+    {
+      "id_professor": "M1",
+      "id_turma": "T101",
+      "disciplina": "Matemática",
+      "quantidade_aulas": 4
+    },
+    {
+      "id_professor": "M1",
+      "id_turma": "T102",
+      "disciplina": "Física",
+      "quantidade_aulas": 2
+    }
+  ]
+}
