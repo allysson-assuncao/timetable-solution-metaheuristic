@@ -1,3 +1,4 @@
+# pyrefly: ignore [missing-import]
 from PyQt6.QtCore import QObject, pyqtSignal
 from src.models.stp_state import STPState, Professor, Demanda
 from src.models.validators import STPValidator

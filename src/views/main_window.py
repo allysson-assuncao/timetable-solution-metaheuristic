@@ -1,3 +1,4 @@
+# pyrefly: ignore [missing-import]
 from PyQt6.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QTabWidget, QPushButton, QMessageBox, QFileDialog
 from src.controllers.main_controller import MainController
 from src.views.forms.teacher_form import TeacherForm

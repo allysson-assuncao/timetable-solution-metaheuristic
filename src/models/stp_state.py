@@ -1,3 +1,4 @@
+# pyrefly: ignore [missing-import]
 from pydantic import BaseModel, Field
 from typing import List
 
@@ -21,17 +22,27 @@ class ParametrosExecucao(BaseModel):
 
 class Professor(BaseModel):
     id_professor: str
+    nome: str = ""
     carga_maxima: int
     indisponibilidades: List[int] = Field(default_factory=list)
+
+class Turma(BaseModel):
+    id_turma: str
+    nome: str = ""
+
+class Disciplina(BaseModel):
+    id_disciplina: str
+    nome: str = ""
 
 class Demanda(BaseModel):
     id_professor: str
     id_turma: str
-    disciplina: str
+    id_disciplina: str
     quantidade_aulas: int
 
 class STPState(BaseModel):
     parametros_execucao: ParametrosExecucao = Field(default_factory=ParametrosExecucao)
     professores: List[Professor] = Field(default_factory=list)
-    turmas: List[str] = Field(default_factory=list)
+    turmas: List[Turma] = Field(default_factory=list)
+    disciplinas: List[Disciplina] = Field(default_factory=list)
     demandas: List[Demanda] = Field(default_factory=list)
