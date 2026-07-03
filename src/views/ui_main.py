@@ -31,6 +31,7 @@ class UIMainWindow(QMainWindow):
         self.sidebar.addItem("Turmas")
         self.sidebar.addItem("Professores (H2)")
         self.sidebar.addItem("Demandas (H3, H4)")
+        self.sidebar.addItem("Playback & Análise")
         
         # Stacked Widget (Content)
         self.stack = QStackedWidget()
@@ -39,6 +40,9 @@ class UIMainWindow(QMainWindow):
         self.stack.addWidget(TabClasses(self.state_manager))
         self.stack.addWidget(TabProfessors(self.state_manager))
         self.stack.addWidget(TabDemands(self.state_manager))
+        
+        from src.views.crud.tab_playback import TabPlayback
+        self.stack.addWidget(TabPlayback())
         
         self.sidebar.currentRowChanged.connect(self.stack.setCurrentIndex)
         self.sidebar.setCurrentRow(0)
