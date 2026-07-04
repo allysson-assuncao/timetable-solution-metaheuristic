@@ -14,13 +14,18 @@ class SimulatedAnnealingEngine:
         self.t_initial = t_initial
         self.t_final = t_final
         self.alpha_cooling = alpha_cooling
-        self.iter_per_temp = iter_per_temp
         
         self.periodos = state.stp_state.parametros_execucao.periodos_por_dia
         p = state.stp_state.parametros_execucao.pesos_objetivo
         self.alpha_peso = p.alpha
         self.beta_peso = p.beta
         self.gamma_peso = p.gamma
+        
+        # Parametrização Dinâmica (Dynamic Parameterization)
+        M, P = state.matrix.shape
+        matrix_size = M * P
+        scale_factor = max(1.0, matrix_size / 250.0) # Base 250 (e.g. 10 profs x 25 periods)
+        self.iter_per_temp = int(iter_per_temp * scale_factor)
 
     def run(self):
         matrix = self.state.matrix
@@ -36,11 +41,17 @@ class SimulatedAnnealingEngine:
         best_cost = current_cost
         global_iter = 0
         
+        # Mecânica de Reheating
+        stuck_counter = 0
+        max_stuck_plateaus = 50 
+        
         if self.recorder:
             self.recorder.record_step(iteration=global_iter, phase="SA Início", cost=current_cost, temperature=current_temp, matrix=matrix)
 
         while current_temp > self.t_final:
             plateau_accepted = 0
+            improved_in_plateau = False
+            
             for _ in range(self.iter_per_temp):
                 global_iter += 1
                 
@@ -75,11 +86,31 @@ class SimulatedAnnealingEngine:
                     # 4. Global Best
                     if current_cost < best_cost:
                         best_cost = current_cost
+                        improved_in_plateau = True
                         if self.recorder:
                             self.recorder.record_step(iteration=global_iter, phase="SA Global Best", cost=best_cost, temperature=current_temp, matrix=matrix)
             
             # Resfriamento
             current_temp *= self.alpha_cooling
+            
+            # Checagem de Estagnação
+            if improved_in_plateau:
+                stuck_counter = 0
+            else:
+                stuck_counter += 1
+                
+            # Gatilho de Reheating
+            if stuck_counter > max_stuck_plateaus:
+                choques = STPEvaluator.evaluate_clashes(matrix, self.state.int_to_class_disc)
+                if choques > 0:
+                    # Injeta calor (Terremoto estocástico)
+                    current_temp = self.t_initial * 0.7
+                    stuck_counter = 0
+                    if self.recorder:
+                        self.recorder.record_step(iteration=global_iter, phase="SA Reheating", cost=current_cost, temperature=current_temp, matrix=matrix)
+                else:
+                    # Sem choques, ignora reaquecimento e foca em lapidar ergonomia fina
+                    pass
             
             if self.recorder and plateau_accepted > 0:
                 self.recorder.record_step(iteration=global_iter, phase="SA Fim Plateau", cost=current_cost, temperature=current_temp, matrix=matrix)
