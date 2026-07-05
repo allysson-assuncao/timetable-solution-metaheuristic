@@ -93,6 +93,12 @@ class SimulatedAnnealingEngine:
             # Resfriamento
             current_temp *= self.alpha_cooling
             
+            # Recalculate true cost to eliminate floating point drift (TD-2)
+            current_cost = STPEvaluator.calculate_total_cost(
+                matrix, self.alpha_peso, self.beta_peso, self.gamma_peso, 
+                self.periodos, self.state.int_to_class_disc
+            )
+            
             # Checagem de Estagnação
             if improved_in_plateau:
                 stuck_counter = 0

@@ -41,7 +41,9 @@ def _run_single_instance(stp_data: dict, seed: int):
         state.int_to_class_disc
     )
     
-    return final_cost, state.matrix, recorder.snapshots
+    choques = STPEvaluator.evaluate_clashes(state.matrix, state.int_to_class_disc)
+    
+    return choques, final_cost, state.matrix, recorder.snapshots
 
 class MetaheuristicEngine:
     def __init__(self, state: TimetableState, recorder: SessionRecorder = None, multi_start_runs: int = 4):
@@ -58,11 +60,13 @@ class MetaheuristicEngine:
         seeds = [random.randint(0, 999999) for _ in range(self.multi_start_runs)]
         
         best_cost = float('inf')
+        best_choques = float('inf')
         best_matrix = None
         best_snapshots = []
         
         if self.multi_start_runs <= 1:
-            cost, matrix, snaps = _run_single_instance(stp_data, seeds[0])
+            choques, cost, matrix, snaps = _run_single_instance(stp_data, seeds[0])
+            best_choques = choques
             best_cost = cost
             best_matrix = matrix
             best_snapshots = snaps
@@ -72,8 +76,9 @@ class MetaheuristicEngine:
                 
                 for future in concurrent.futures.as_completed(futures):
                     try:
-                        cost, matrix, snaps = future.result()
-                        if cost < best_cost:
+                        choques, cost, matrix, snaps = future.result()
+                        if (choques, cost) < (best_choques, best_cost):
+                            best_choques = choques
                             best_cost = cost
                             best_matrix = matrix
                             best_snapshots = snaps

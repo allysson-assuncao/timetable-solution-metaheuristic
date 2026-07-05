@@ -103,7 +103,16 @@ class GRASPEngine:
                     candidates.append((col, cost))
                     
             if not candidates:
-                print(f"ALERTA: Sem slots vagos para Prof {demanda.id_professor}. Ignorando aula.")
+                # Fallback: find ANY non-(-1) slot and force-allocate (generates clash by design)
+                fallback = [
+                    col for col in range(self.state.matrix.shape[1])
+                    if self.state.matrix[row, col] != -1
+                ]
+                if fallback:
+                    chosen_col = random.choice(fallback)
+                    self.state.matrix[row, chosen_col] = code  # Overwrites — clash expected, SA will repair
+                else:
+                    print(f"[FATAL] Prof {demanda.id_professor} has NO allocatable slots (all -1). H2 overly constrained.")
                 continue
                 
             min_cost = min(candidates, key=lambda x: x[1])[1]
