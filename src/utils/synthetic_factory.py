@@ -58,8 +58,8 @@ class SyntheticDataFactory:
             "parametros_execucao": {
                 "dias_letivos": dias_letivos,
                 "periodos_por_dia": periodos_por_dia,
-                "pesos_objetivo": {"alpha": 1.0, "beta": 1.0, "gamma": 1000.0},
-                "sa_parametros": {"temperatura_inicial": 1000.0, "temperatura_minima": 0.1, "taxa_resfriamento": 0.95, "iteracoes_por_temperatura": 500}
+                "pesos_objetivo": {"alpha": 1.0, "beta": 1.0, "gamma": 50.0},
+                "sa_parametros": {"temperatura_inicial": 50.0, "temperatura_minima": 0.1, "taxa_resfriamento": 0.95, "iteracoes_por_temperatura": 500}
             },
             "professores": professores,
             "turmas": turmas,

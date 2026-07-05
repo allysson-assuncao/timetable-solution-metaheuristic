@@ -48,7 +48,7 @@ class GRASPEngine:
                     clash = True
                     break
         if clash:
-            cost += 1000.0 # Penalidade severa para choque de turma
+            cost += 50.0 # Penalidade severa para choque de turma
             
         # 2. Agrupamento (Janelas)
         dia = col // self.periodos
@@ -109,7 +109,7 @@ class GRASPEngine:
             min_cost = min(candidates, key=lambda x: x[1])[1]
             max_cost = max(candidates, key=lambda x: x[1])[1]
             
-            if min_cost >= 1000:
+            if min_cost >= 50:
                 current_alpha = min(1.0, current_alpha + 0.1)
             else:
                 current_alpha = max(self.base_alpha, current_alpha - 0.05)

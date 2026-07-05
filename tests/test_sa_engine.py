@@ -16,7 +16,7 @@ def test_sa_execution():
         parametros_execucao=ParametrosExecucao(
             dias_letivos=2,
             periodos_por_dia=3,
-            pesos_objetivo=PesosObjetivo(alpha=1.0, beta=1.0, gamma=1000.0)
+            pesos_objetivo=PesosObjetivo(alpha=1.0, beta=1.0, gamma=50.0)
         ),
         professores=[
             Professor(id_professor="P1", nome="Alice", carga_maxima=6, indisponibilidades=[]),
@@ -43,7 +43,7 @@ def test_sa_execution():
     state.matrix[1, 1] = code_fis
     
     initial_cost = STPEvaluator.calculate_total_cost(
-        state.matrix, 1.0, 1.0, 1000.0, 3, state.int_to_class_disc
+        state.matrix, 1.0, 1.0, 50.0, 3, state.int_to_class_disc
     )
     assert initial_cost >= 2000, "Estado inicial deve ter Custo altíssimo devido a 2 choques!"
     
@@ -51,7 +51,7 @@ def test_sa_execution():
     engine.run()
     
     final_cost = STPEvaluator.calculate_total_cost(
-        state.matrix, 1.0, 1.0, 1000.0, 3, state.int_to_class_disc
+        state.matrix, 1.0, 1.0, 50.0, 3, state.int_to_class_disc
     )
     
     choques = STPEvaluator.evaluate_clashes(state.matrix, state.int_to_class_disc)
