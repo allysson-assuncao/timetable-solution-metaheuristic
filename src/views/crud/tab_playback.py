@@ -29,11 +29,17 @@ class TabPlayback(QWidget):
     def init_ui(self):
         layout = QVBoxLayout()
         
-        # Painel superior (Load)
+        # Painel superior (Load / Export)
         top_panel = QHBoxLayout()
         self.btn_load = QPushButton("Carregar Sessão (.pickle)")
-        self.btn_load.clicked.connect(self.load_session)
+        self.btn_load.clicked.connect(self.load_from_file)
         top_panel.addWidget(self.btn_load)
+        
+        self.btn_export = QPushButton("📊 Exportar Excel (XLSX)")
+        self.btn_export.clicked.connect(self.export_excel)
+        self.btn_export.setEnabled(False)
+        self.btn_export.setStyleSheet("background-color: #2b9348; color: white; font-weight: bold;")
+        top_panel.addWidget(self.btn_export)
         
         self.lbl_info = QLabel("Nenhuma sessão carregada.")
         top_panel.addWidget(self.lbl_info)
@@ -53,6 +59,8 @@ class TabPlayback(QWidget):
         
         # Grid
         self.table = QTableWidget(0, 0)
+        self.table.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
+        self.table.verticalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
         layout.addWidget(self.table)
         
         # Timeline e Controles
@@ -64,20 +72,26 @@ class TabPlayback(QWidget):
         self.slider.setEnabled(False)
         self.slider.valueChanged.connect(self.slider_changed)
         
-        self.combo_speed = QComboBox()
-        self.combo_speed.addItems(["1x", "2x", "5x", "10x"])
-        self.combo_speed.currentIndexChanged.connect(self.update_speed)
+        self.lbl_speed = QLabel("Velocidade (1x):")
+        self.speed_slider = QSlider(Qt.Orientation.Horizontal)
+        self.speed_slider.setMinimum(1)
+        self.speed_slider.setMaximum(100)
+        self.speed_slider.setValue(1)
+        self.speed_slider.valueChanged.connect(self.update_speed)
         
         ctrl_layout.addWidget(self.btn_play)
         ctrl_layout.addWidget(self.slider)
-        ctrl_layout.addWidget(self.combo_speed)
+        ctrl_layout.addWidget(self.lbl_speed)
+        ctrl_layout.addWidget(self.speed_slider)
         
         layout.addLayout(ctrl_layout)
         self.setLayout(layout)
 
     def update_speed(self):
-        speed_str = self.combo_speed.currentText().replace("x", "")
-        interval = int(1000 / int(speed_str))
+        speed_mult = self.speed_slider.value()
+        self.lbl_speed.setText(f"Velocidade ({speed_mult}x):")
+        
+        interval = max(10, int(1000 / speed_mult))
         if self.is_playing:
             self.timer.setInterval(interval)
 
@@ -102,23 +116,73 @@ class TabPlayback(QWidget):
         self.current_index = value
         self.render_snapshot()
 
-    def load_session(self):
+    def load_from_file(self):
         path, _ = QFileDialog.getOpenFileName(self, "Abrir Sessão", "", "Pickle Files (*.pickle)")
         if path:
             try:
-                self.session_data = SessionRecorder.load_session(path)
-                self.snapshots = self.session_data["snapshots"]
-                self.setup_grid()
+                data = SessionRecorder.load_session(path)
                 
-                self.slider.setEnabled(True)
-                self.slider.setMinimum(0)
-                self.slider.setMaximum(len(self.snapshots) - 1)
-                self.slider.setValue(0)
-                
-                self.lbl_info.setText(f"Sessão carregada: {len(self.snapshots)} snapshots.")
-                self.render_snapshot()
+                # Tenta reconstruir o raw_state para habilitar exportação Excel
+                if "stp_state_dict" in data:
+                    from src.models.stp_state import STPState
+                    from src.core.state import TimetableState
+                    pyd_state = STPState(**data["stp_state_dict"])
+                    t_state = TimetableState(pyd_state)
+                    
+                    # Como recriamos, a matriz final estará vazia (é recriada zerada).
+                    # Mas o exporter usa t_state.matrix. Vamos injetar a matriz do último snapshot nela.
+                    t_state.matrix = data["snapshots"][-1].matrix_copy
+                    self.raw_state = t_state
+                    self.btn_export.setEnabled(True)
+                else:
+                    self.raw_state = None
+                    self.btn_export.setEnabled(False)
+                    
+                self.setup_from_data(data)
             except Exception as e:
                 QMessageBox.warning(self, "Erro", f"Falha ao carregar: {e}")
+
+    def load_session(self, state):
+        # Recebe o TimetableState recém rodado do QThread
+        self.raw_state = state
+        self.btn_export.setEnabled(True)
+        
+        data = {
+            "snapshots": state.session_recorder.snapshots,
+            "prof_id_to_idx": state.prof_id_to_idx,
+            "int_to_class_disc": state.int_to_class_disc
+        }
+        self.setup_from_data(data)
+        
+    def export_excel(self):
+        if not hasattr(self, 'raw_state') or not self.raw_state:
+            QMessageBox.warning(self, "Erro", "Nenhum estado válido para exportar.")
+            return
+            
+        path, _ = QFileDialog.getSaveFileName(self, "Salvar Excel", "Horario_Escolar_Otimizado.xlsx", "Excel Files (*.xlsx)")
+        if path:
+            try:
+                from src.utils.exporter import ExportManager
+                exporter = ExportManager(self.raw_state)
+                exporter.export_to_excel(path)
+                QMessageBox.information(self, "Sucesso", f"Excel exportado com sucesso em:\n{path}")
+            except Exception as e:
+                QMessageBox.critical(self, "Erro", f"Erro na exportação: {e}")
+
+    def setup_from_data(self, data):
+        self.session_data = data
+        self.snapshots = data["snapshots"]
+        
+        self.setup_grid()
+        
+        self.slider.setEnabled(True)
+        self.slider.setMinimum(0)
+        self.slider.setMaximum(len(self.snapshots) - 1)
+        self.slider.setValue(0)
+        self.current_index = 0
+        
+        self.lbl_info.setText(f"Sessão carregada: {len(self.snapshots)} snapshots.")
+        self.render_snapshot()
 
     def setup_grid(self):
         profs = sorted(self.session_data["prof_id_to_idx"].items(), key=lambda x: x[1])
@@ -130,6 +194,7 @@ class TabPlayback(QWidget):
         
         self.table.setVerticalHeaderLabels(prof_names)
         self.table.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
+        self.table.verticalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
 
     def render_snapshot(self):
         if not self.snapshots: return
@@ -155,14 +220,17 @@ class TabPlayback(QWidget):
                     item.setText("X")
                     item.setBackground(color_indisp)
                     item.setForeground(QBrush(QColor("white")))
+                    item.setToolTip("Indisponibilidade / Fora da carga horária")
                 elif val == 0:
                     item.setText("")
                     item.setBackground(color_vago)
+                    item.setToolTip("Período Livre")
                 else:
                     cd = int_to_cd.get(val)
                     if cd:
                         turma, disc = cd
                         item.setText(f"{turma}\n{disc}")
+                        item.setToolTip(f"Turma: {turma}\nDisciplina: {disc}")
                         color_idx = hash(turma) % len(self.class_colors)
                         item.setBackground(QBrush(self.class_colors[color_idx]))
                 
