@@ -211,6 +211,8 @@ class TabPlayback(QWidget):
         color_indisp = QBrush(QColor("#333333"))
         color_vago = QBrush(QColor("#ffffff"))
         
+        from src.utils.color_hash import generate_stable_color
+        
         for i in range(mat.shape[0]):
             for j in range(mat.shape[1]):
                 val = mat[i, j]
@@ -231,8 +233,10 @@ class TabPlayback(QWidget):
                         turma, disc = cd
                         item.setText(f"{turma}\n{disc}")
                         item.setToolTip(f"Turma: {turma}\nDisciplina: {disc}")
-                        color_idx = hash(turma) % len(self.class_colors)
-                        item.setBackground(QBrush(self.class_colors[color_idx]))
+                        
+                        bg_hex = generate_stable_color(f"{turma}{disc}")
+                        item.setBackground(QBrush(QColor(bg_hex)))
+                        item.setForeground(QBrush(QColor("black")))
                 
                 item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
                 self.table.setItem(i, j, item)

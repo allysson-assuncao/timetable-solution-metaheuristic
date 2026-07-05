@@ -128,11 +128,9 @@ class TabExecution(QWidget):
         except Exception as e:
             QMessageBox.warning(self, "Aviso", f"Otimização concluída, mas falhou ao salvar auditoria:\n{e}")
             
-        # Repassa para o Playback
-        playback_tab = self.ui_main.stack.widget(7)
-        playback_tab.load_session(final_state)
-        
-        self.ui_main.sidebar.setCurrentRow(7)
+        # Repassa para o Playback (Nova Arquitetura Top-Level)
+        self.ui_main.playback_widget.load_session(final_state)
+        self.ui_main.open_playback_tab()
         
     def on_heuristic_error(self, err_msg):
         self.progress_opt.close()

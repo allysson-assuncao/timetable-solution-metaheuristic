@@ -9,7 +9,7 @@
         },
         "sa_parametros": {
             "temperatura_inicial": 50.0,
-            "temperatura_final": 0.1,
+            "temperatura_minima": 0.1,
             "taxa_resfriamento": 0.95,
             "iteracoes_por_temperatura": 500
         }
@@ -20,9 +20,8 @@
             "nome": "Professor 1",
             "carga_maxima": 25,
             "indisponibilidades": [
-                1,
-                7,
-                15
+                15,
+                25
             ]
         },
         {
@@ -30,9 +29,9 @@
             "nome": "Professor 2",
             "carga_maxima": 25,
             "indisponibilidades": [
-                10,
-                14,
-                22
+                8,
+                9,
+                16
             ]
         },
         {
@@ -41,8 +40,7 @@
             "carga_maxima": 25,
             "indisponibilidades": [
                 8,
-                9,
-                23
+                9
             ]
         },
         {
@@ -50,24 +48,28 @@
             "nome": "Professor 4",
             "carga_maxima": 25,
             "indisponibilidades": [
-                17,
-                22
+                6,
+                7,
+                18,
+                21
             ]
         },
         {
             "id_professor": "P5",
             "nome": "Professor 5",
             "carga_maxima": 25,
-            "indisponibilidades": []
+            "indisponibilidades": [
+                10,
+                14
+            ]
         },
         {
             "id_professor": "P6",
             "nome": "Professor 6",
             "carga_maxima": 25,
             "indisponibilidades": [
-                1,
-                3,
-                12,
+                8,
+                11,
                 22
             ]
         },
@@ -76,10 +78,10 @@
             "nome": "Professor 7",
             "carga_maxima": 25,
             "indisponibilidades": [
-                2,
-                7,
-                16,
-                24
+                5,
+                6,
+                12,
+                19
             ]
         },
         {
@@ -87,10 +89,12 @@
             "nome": "Professor 8",
             "carga_maxima": 25,
             "indisponibilidades": [
+                2,
                 5,
-                8,
                 13,
-                24
+                14,
+                17,
+                22
             ]
         },
         {
@@ -98,8 +102,10 @@
             "nome": "Professor 9",
             "carga_maxima": 25,
             "indisponibilidades": [
-                6,
-                23
+                5,
+                14,
+                22,
+                24
             ]
         },
         {
@@ -133,279 +139,677 @@
     ],
     "disciplinas": [
         {
-            "id_disciplina": "DISC1",
-            "nome": "Disciplina Unica"
+            "id_disciplina": "MAT",
+            "nome": "Matem\u00e1tica"
+        },
+        {
+            "id_disciplina": "FIS",
+            "nome": "F\u00edsica"
+        },
+        {
+            "id_disciplina": "QUI",
+            "nome": "Qu\u00edmica"
+        },
+        {
+            "id_disciplina": "BIO",
+            "nome": "Biologia"
+        },
+        {
+            "id_disciplina": "HIS",
+            "nome": "Hist\u00f3ria"
+        },
+        {
+            "id_disciplina": "GEO",
+            "nome": "Geografia"
         }
     ],
     "demandas": [
         {
-            "id_professor": "P2",
-            "id_turma": "T1",
-            "id_disciplina": "DISC1",
-            "quantidade_aulas": 5
-        },
-        {
             "id_professor": "P5",
-            "id_turma": "T2",
-            "id_disciplina": "DISC1",
-            "quantidade_aulas": 3
+            "id_turma": "T1",
+            "id_disciplina": "FIS",
+            "quantidade_aulas": 2
         },
         {
-            "id_professor": "P8",
-            "id_turma": "T3",
-            "id_disciplina": "DISC1",
-            "quantidade_aulas": 4
+            "id_professor": "P3",
+            "id_turma": "T2",
+            "id_disciplina": "BIO",
+            "quantidade_aulas": 1
         },
         {
             "id_professor": "P7",
-            "id_turma": "T4",
-            "id_disciplina": "DISC1",
-            "quantidade_aulas": 3
-        },
-        {
-            "id_professor": "P9",
-            "id_turma": "T5",
-            "id_disciplina": "DISC1",
-            "quantidade_aulas": 1
-        },
-        {
-            "id_professor": "P5",
-            "id_turma": "T1",
-            "id_disciplina": "DISC1",
-            "quantidade_aulas": 5
-        },
-        {
-            "id_professor": "P1",
-            "id_turma": "T2",
-            "id_disciplina": "DISC1",
-            "quantidade_aulas": 1
-        },
-        {
-            "id_professor": "P3",
             "id_turma": "T3",
-            "id_disciplina": "DISC1",
-            "quantidade_aulas": 2
+            "id_disciplina": "QUI",
+            "quantidade_aulas": 1
         },
         {
             "id_professor": "P2",
             "id_turma": "T4",
-            "id_disciplina": "DISC1",
-            "quantidade_aulas": 5
-        },
-        {
-            "id_professor": "P8",
-            "id_turma": "T5",
-            "id_disciplina": "DISC1",
-            "quantidade_aulas": 3
-        },
-        {
-            "id_professor": "P9",
-            "id_turma": "T1",
-            "id_disciplina": "DISC1",
-            "quantidade_aulas": 4
-        },
-        {
-            "id_professor": "P3",
-            "id_turma": "T2",
-            "id_disciplina": "DISC1",
-            "quantidade_aulas": 4
-        },
-        {
-            "id_professor": "P4",
-            "id_turma": "T3",
-            "id_disciplina": "DISC1",
-            "quantidade_aulas": 3
-        },
-        {
-            "id_professor": "P8",
-            "id_turma": "T4",
-            "id_disciplina": "DISC1",
-            "quantidade_aulas": 5
-        },
-        {
-            "id_professor": "P7",
-            "id_turma": "T5",
-            "id_disciplina": "DISC1",
-            "quantidade_aulas": 3
-        },
-        {
-            "id_professor": "P3",
-            "id_turma": "T1",
-            "id_disciplina": "DISC1",
-            "quantidade_aulas": 3
-        },
-        {
-            "id_professor": "P4",
-            "id_turma": "T2",
-            "id_disciplina": "DISC1",
-            "quantidade_aulas": 2
-        },
-        {
-            "id_professor": "P9",
-            "id_turma": "T4",
-            "id_disciplina": "DISC1",
-            "quantidade_aulas": 4
-        },
-        {
-            "id_professor": "P5",
-            "id_turma": "T5",
-            "id_disciplina": "DISC1",
-            "quantidade_aulas": 3
-        },
-        {
-            "id_professor": "P10",
-            "id_turma": "T3",
-            "id_disciplina": "DISC1",
-            "quantidade_aulas": 3
-        },
-        {
-            "id_professor": "P4",
-            "id_turma": "T4",
-            "id_disciplina": "DISC1",
-            "quantidade_aulas": 2
-        },
-        {
-            "id_professor": "P3",
-            "id_turma": "T5",
-            "id_disciplina": "DISC1",
-            "quantidade_aulas": 2
-        },
-        {
-            "id_professor": "P8",
-            "id_turma": "T2",
-            "id_disciplina": "DISC1",
+            "id_disciplina": "HIS",
             "quantidade_aulas": 1
-        },
-        {
-            "id_professor": "P3",
-            "id_turma": "T4",
-            "id_disciplina": "DISC1",
-            "quantidade_aulas": 2
-        },
-        {
-            "id_professor": "P4",
-            "id_turma": "T5",
-            "id_disciplina": "DISC1",
-            "quantidade_aulas": 2
-        },
-        {
-            "id_professor": "P2",
-            "id_turma": "T2",
-            "id_disciplina": "DISC1",
-            "quantidade_aulas": 3
-        },
-        {
-            "id_professor": "P6",
-            "id_turma": "T4",
-            "id_disciplina": "DISC1",
-            "quantidade_aulas": 3
-        },
-        {
-            "id_professor": "P4",
-            "id_turma": "T1",
-            "id_disciplina": "DISC1",
-            "quantidade_aulas": 2
-        },
-        {
-            "id_professor": "P10",
-            "id_turma": "T2",
-            "id_disciplina": "DISC1",
-            "quantidade_aulas": 4
-        },
-        {
-            "id_professor": "P9",
-            "id_turma": "T3",
-            "id_disciplina": "DISC1",
-            "quantidade_aulas": 5
         },
         {
             "id_professor": "P6",
             "id_turma": "T5",
-            "id_disciplina": "DISC1",
-            "quantidade_aulas": 6
+            "id_disciplina": "HIS",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P1",
+            "id_turma": "T1",
+            "id_disciplina": "QUI",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P2",
+            "id_turma": "T2",
+            "id_disciplina": "MAT",
+            "quantidade_aulas": 1
         },
         {
             "id_professor": "P5",
             "id_turma": "T3",
-            "id_disciplina": "DISC1",
-            "quantidade_aulas": 2
-        },
-        {
-            "id_professor": "P10",
-            "id_turma": "T1",
-            "id_disciplina": "DISC1",
-            "quantidade_aulas": 2
-        },
-        {
-            "id_professor": "P1",
-            "id_turma": "T3",
-            "id_disciplina": "DISC1",
-            "quantidade_aulas": 4
+            "id_disciplina": "QUI",
+            "quantidade_aulas": 1
         },
         {
             "id_professor": "P7",
+            "id_turma": "T4",
+            "id_disciplina": "MAT",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P4",
+            "id_turma": "T5",
+            "id_disciplina": "QUI",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P4",
             "id_turma": "T1",
-            "id_disciplina": "DISC1",
+            "id_disciplina": "MAT",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P10",
+            "id_turma": "T2",
+            "id_disciplina": "BIO",
+            "quantidade_aulas": 3
+        },
+        {
+            "id_professor": "P2",
+            "id_turma": "T3",
+            "id_disciplina": "MAT",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P8",
+            "id_turma": "T4",
+            "id_disciplina": "HIS",
             "quantidade_aulas": 1
         },
         {
             "id_professor": "P6",
-            "id_turma": "T2",
-            "id_disciplina": "DISC1",
-            "quantidade_aulas": 2
-        },
-        {
-            "id_professor": "P2",
             "id_turma": "T5",
-            "id_disciplina": "DISC1",
-            "quantidade_aulas": 2
-        },
-        {
-            "id_professor": "P8",
-            "id_turma": "T1",
-            "id_disciplina": "DISC1",
-            "quantidade_aulas": 2
-        },
-        {
-            "id_professor": "P10",
-            "id_turma": "T5",
-            "id_disciplina": "DISC1",
-            "quantidade_aulas": 3
-        },
-        {
-            "id_professor": "P7",
-            "id_turma": "T3",
-            "id_disciplina": "DISC1",
+            "id_disciplina": "BIO",
             "quantidade_aulas": 1
         },
         {
-            "id_professor": "P7",
-            "id_turma": "T2",
-            "id_disciplina": "DISC1",
-            "quantidade_aulas": 3
-        },
-        {
-            "id_professor": "P1",
+            "id_professor": "P3",
             "id_turma": "T1",
-            "id_disciplina": "DISC1",
+            "id_disciplina": "HIS",
             "quantidade_aulas": 1
         },
         {
             "id_professor": "P9",
             "id_turma": "T2",
-            "id_disciplina": "DISC1",
-            "quantidade_aulas": 2
+            "id_disciplina": "HIS",
+            "quantidade_aulas": 1
         },
         {
-            "id_professor": "P2",
+            "id_professor": "P6",
             "id_turma": "T3",
-            "id_disciplina": "DISC1",
+            "id_disciplina": "HIS",
             "quantidade_aulas": 1
         },
         {
             "id_professor": "P1",
             "id_turma": "T4",
-            "id_disciplina": "DISC1",
+            "id_disciplina": "HIS",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P2",
+            "id_turma": "T5",
+            "id_disciplina": "HIS",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P5",
+            "id_turma": "T1",
+            "id_disciplina": "MAT",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P4",
+            "id_turma": "T2",
+            "id_disciplina": "BIO",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P1",
+            "id_turma": "T3",
+            "id_disciplina": "FIS",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P3",
+            "id_turma": "T4",
+            "id_disciplina": "HIS",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P2",
+            "id_turma": "T5",
+            "id_disciplina": "MAT",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P3",
+            "id_turma": "T1",
+            "id_disciplina": "GEO",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P5",
+            "id_turma": "T2",
+            "id_disciplina": "BIO",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P1",
+            "id_turma": "T3",
+            "id_disciplina": "QUI",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P9",
+            "id_turma": "T4",
+            "id_disciplina": "FIS",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P8",
+            "id_turma": "T5",
+            "id_disciplina": "BIO",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P8",
+            "id_turma": "T1",
+            "id_disciplina": "QUI",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P9",
+            "id_turma": "T2",
+            "id_disciplina": "FIS",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P5",
+            "id_turma": "T3",
+            "id_disciplina": "HIS",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P7",
+            "id_turma": "T4",
+            "id_disciplina": "FIS",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P1",
+            "id_turma": "T5",
+            "id_disciplina": "GEO",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P1",
+            "id_turma": "T1",
+            "id_disciplina": "BIO",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P7",
+            "id_turma": "T2",
+            "id_disciplina": "FIS",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P5",
+            "id_turma": "T3",
+            "id_disciplina": "BIO",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P10",
+            "id_turma": "T4",
+            "id_disciplina": "QUI",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P9",
+            "id_turma": "T5",
+            "id_disciplina": "GEO",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P4",
+            "id_turma": "T1",
+            "id_disciplina": "FIS",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P7",
+            "id_turma": "T2",
+            "id_disciplina": "BIO",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P9",
+            "id_turma": "T3",
+            "id_disciplina": "QUI",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P8",
+            "id_turma": "T4",
+            "id_disciplina": "QUI",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P1",
+            "id_turma": "T5",
+            "id_disciplina": "BIO",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P7",
+            "id_turma": "T1",
+            "id_disciplina": "MAT",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P1",
+            "id_turma": "T2",
+            "id_disciplina": "QUI",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P3",
+            "id_turma": "T3",
+            "id_disciplina": "FIS",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P8",
+            "id_turma": "T4",
+            "id_disciplina": "GEO",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P9",
+            "id_turma": "T5",
+            "id_disciplina": "HIS",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P7",
+            "id_turma": "T1",
+            "id_disciplina": "GEO",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P2",
+            "id_turma": "T2",
+            "id_disciplina": "QUI",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P4",
+            "id_turma": "T3",
+            "id_disciplina": "GEO",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P3",
+            "id_turma": "T4",
+            "id_disciplina": "QUI",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P8",
+            "id_turma": "T5",
+            "id_disciplina": "HIS",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P4",
+            "id_turma": "T1",
+            "id_disciplina": "HIS",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P9",
+            "id_turma": "T2",
+            "id_disciplina": "MAT",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P6",
+            "id_turma": "T4",
+            "id_disciplina": "HIS",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P2",
+            "id_turma": "T3",
+            "id_disciplina": "HIS",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P9",
+            "id_turma": "T4",
+            "id_disciplina": "BIO",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P6",
+            "id_turma": "T5",
+            "id_disciplina": "MAT",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P6",
+            "id_turma": "T1",
+            "id_disciplina": "GEO",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P10",
+            "id_turma": "T2",
+            "id_disciplina": "MAT",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P4",
+            "id_turma": "T4",
+            "id_disciplina": "FIS",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P3",
+            "id_turma": "T5",
+            "id_disciplina": "BIO",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P4",
+            "id_turma": "T1",
+            "id_disciplina": "QUI",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P3",
+            "id_turma": "T2",
+            "id_disciplina": "FIS",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P6",
+            "id_turma": "T3",
+            "id_disciplina": "QUI",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P2",
+            "id_turma": "T4",
+            "id_disciplina": "QUI",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P9",
+            "id_turma": "T5",
+            "id_disciplina": "MAT",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P6",
+            "id_turma": "T2",
+            "id_disciplina": "BIO",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P4",
+            "id_turma": "T3",
+            "id_disciplina": "HIS",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P1",
+            "id_turma": "T4",
+            "id_disciplina": "FIS",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P10",
+            "id_turma": "T5",
+            "id_disciplina": "FIS",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P6",
+            "id_turma": "T1",
+            "id_disciplina": "FIS",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P10",
+            "id_turma": "T3",
+            "id_disciplina": "QUI",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P5",
+            "id_turma": "T4",
+            "id_disciplina": "MAT",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P9",
+            "id_turma": "T5",
+            "id_disciplina": "QUI",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P5",
+            "id_turma": "T1",
+            "id_disciplina": "QUI",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P7",
+            "id_turma": "T2",
+            "id_disciplina": "MAT",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P8",
+            "id_turma": "T3",
+            "id_disciplina": "GEO",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P6",
+            "id_turma": "T4",
+            "id_disciplina": "FIS",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P8",
+            "id_turma": "T2",
+            "id_disciplina": "FIS",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P2",
+            "id_turma": "T3",
+            "id_disciplina": "QUI",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P9",
+            "id_turma": "T4",
+            "id_disciplina": "HIS",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P4",
+            "id_turma": "T5",
+            "id_disciplina": "BIO",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P5",
+            "id_turma": "T1",
+            "id_disciplina": "BIO",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P9",
+            "id_turma": "T3",
+            "id_disciplina": "BIO",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P7",
+            "id_turma": "T4",
+            "id_disciplina": "QUI",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P7",
+            "id_turma": "T1",
+            "id_disciplina": "FIS",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P1",
+            "id_turma": "T4",
+            "id_disciplina": "BIO",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P1",
+            "id_turma": "T1",
+            "id_disciplina": "FIS",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P2",
+            "id_turma": "T2",
+            "id_disciplina": "FIS",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P5",
+            "id_turma": "T3",
+            "id_disciplina": "FIS",
+            "quantidade_aulas": 3
+        },
+        {
+            "id_professor": "P3",
+            "id_turma": "T4",
+            "id_disciplina": "MAT",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P7",
+            "id_turma": "T5",
+            "id_disciplina": "HIS",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P8",
+            "id_turma": "T1",
+            "id_disciplina": "FIS",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P10",
+            "id_turma": "T2",
+            "id_disciplina": "GEO",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P3",
+            "id_turma": "T4",
+            "id_disciplina": "BIO",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P2",
+            "id_turma": "T5",
+            "id_disciplina": "FIS",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P10",
+            "id_turma": "T1",
+            "id_disciplina": "QUI",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P7",
+            "id_turma": "T2",
+            "id_disciplina": "GEO",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P8",
+            "id_turma": "T3",
+            "id_disciplina": "HIS",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P4",
+            "id_turma": "T4",
+            "id_disciplina": "HIS",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P2",
+            "id_turma": "T5",
+            "id_disciplina": "GEO",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P8",
+            "id_turma": "T1",
+            "id_disciplina": "MAT",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P6",
+            "id_turma": "T4",
+            "id_disciplina": "MAT",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P4",
+            "id_turma": "T5",
+            "id_disciplina": "HIS",
             "quantidade_aulas": 1
         }
     ]

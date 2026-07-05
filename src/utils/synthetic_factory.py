@@ -24,7 +24,14 @@ class SyntheticDataFactory:
 
         professores = [{"id_professor": f"P{i}", "nome": f"Professor {i}", "carga_maxima": total_slots, "indisponibilidades": []} for i in range(1, num_profs + 1)]
         turmas = [{"id_turma": f"T{i}", "nome": f"Turma {i}"} for i in range(1, num_turmas + 1)]
-        disciplinas = [{"id_disciplina": "DISC1", "nome": "Disciplina Unica"}]
+        disciplinas = [
+            {"id_disciplina": "MAT", "nome": "Matemática"},
+            {"id_disciplina": "FIS", "nome": "Física"},
+            {"id_disciplina": "QUI", "nome": "Química"},
+            {"id_disciplina": "BIO", "nome": "Biologia"},
+            {"id_disciplina": "HIS", "nome": "História"},
+            {"id_disciplina": "GEO", "nome": "Geografia"}
+        ]
         
         # Reverse Timetabling
         grid = {} # (row, col) -> turma
@@ -39,7 +46,8 @@ class SyntheticDataFactory:
                     p_idx = profs_disponiveis.pop()
                     grid[(p_idx, col)] = turmas[t_idx]["id_turma"]
                     
-                    key = (f"P{p_idx+1}", turmas[t_idx]["id_turma"], "DISC1")
+                    disc_escolhida = random.choice(disciplinas)["id_disciplina"]
+                    key = (f"P{p_idx+1}", turmas[t_idx]["id_turma"], disc_escolhida)
                     demandas_cont[key] = demandas_cont.get(key, 0) + 1
         
         # Inject unavailabilities for unused slots

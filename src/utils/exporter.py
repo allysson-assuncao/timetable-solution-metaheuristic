@@ -60,18 +60,32 @@ class ExportManager:
             workbook = writer.book
             worksheet = writer.sheets["Horário Completo"]
             
+            from openpyxl.styles import PatternFill
+            from src.utils.color_hash import generate_stable_color
+            
             # Ajustar largura das colunas e quebra de linha
             for col in worksheet.columns:
                 max_length = 0
                 column = col[0].column_letter # Nome da coluna (A, B, C...)
                 for cell in col:
+                    val = str(cell.value) if cell.value else ""
                     try:
-                        if len(str(cell.value)) > max_length:
-                            max_length = len(str(cell.value))
+                        if len(val) > max_length:
+                            max_length = len(val)
                         
                         # Ativar quebra de texto (wrap text)
                         cell.alignment = cell.alignment.copy(wrapText=True)
-                    except:
+                        
+                        if val == "INDISPONÍVEL":
+                            cell.fill = PatternFill(start_color="333333", end_color="333333", fill_type="solid")
+                        elif "\n(" in val:
+                            turma_str, disc_str = val.split("\n(")
+                            turma_str = turma_str.strip()
+                            disc_str = disc_str.replace(")", "").strip()
+                            bg_hex = generate_stable_color(f"{turma_str}{disc_str}").replace("#", "")
+                            cell.fill = PatternFill(start_color=bg_hex, end_color=bg_hex, fill_type="solid")
+                            
+                    except Exception as e:
                         pass
                 adjusted_width = min(max_length + 2, 25) # Limitar largura máxima
                 worksheet.column_dimensions[column].width = adjusted_width
