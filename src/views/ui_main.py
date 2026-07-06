@@ -1,5 +1,7 @@
 # pyrefly: ignore [missing-import]
-from PyQt6.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QStackedWidget, QMessageBox, QListWidget, QTabWidget
+from PyQt6.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QStackedWidget, QMessageBox, QListWidget, QTabWidget, QApplication
+from PyQt6.QtGui import QKeySequence, QShortcut, QFont
+from PyQt6.QtCore import Qt
 from src.models.state_manager import StateManager
 from src.views.crud.tab_workspace import TabWorkspace
 from src.views.crud.tab_parameters import TabParameters
@@ -19,7 +21,48 @@ class UIMainWindow(QMainWindow):
         
         self.state_manager.validation_failed.connect(self.show_error)
 
+        self.base_font_size = 12
+        self.current_font_size = self.base_font_size
+        self.apply_font_size()
+
         self.init_ui()
+        self.setup_zoom_shortcuts()
+
+    def apply_font_size(self):
+        app = QApplication.instance()
+        if app:
+            font = app.font()
+            font.setPointSize(self.current_font_size)
+            app.setFont(font)
+
+    def setup_zoom_shortcuts(self):
+        QShortcut(QKeySequence("Ctrl++"), self).activated.connect(self.zoom_in)
+        QShortcut(QKeySequence("Ctrl+="), self).activated.connect(self.zoom_in)
+        QShortcut(QKeySequence("Ctrl+-"), self).activated.connect(self.zoom_out)
+        QShortcut(QKeySequence("Ctrl+0"), self).activated.connect(self.zoom_reset)
+
+    def zoom_in(self):
+        self.current_font_size = min(self.current_font_size + 2, 36)
+        self.apply_font_size()
+
+    def zoom_out(self):
+        self.current_font_size = max(self.current_font_size - 2, 8)
+        self.apply_font_size()
+
+    def zoom_reset(self):
+        self.current_font_size = self.base_font_size
+        self.apply_font_size()
+
+    def wheelEvent(self, event):
+        if event.modifiers() == Qt.KeyboardModifier.ControlModifier:
+            delta = event.angleDelta().y()
+            if delta > 0:
+                self.zoom_in()
+            elif delta < 0:
+                self.zoom_out()
+            event.accept()
+        else:
+            super().wheelEvent(event)
 
     def init_ui(self):
         self.top_tabs = QTabWidget()
