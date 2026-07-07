@@ -1,5 +1,5 @@
 # pyrefly: ignore [missing-import]
-from PyQt6.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QStackedWidget, QMessageBox, QListWidget, QTabWidget, QApplication
+from PyQt6.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QStackedWidget, QMessageBox, QListWidget, QTabWidget, QApplication, QSplitter, QStatusBar, QLabel
 from PyQt6.QtGui import QKeySequence, QShortcut, QFont
 from PyQt6.QtCore import Qt
 from src.models.state_manager import StateManager
@@ -25,6 +25,13 @@ class UIMainWindow(QMainWindow):
         self.current_font_size = self.base_font_size
         self.apply_font_size()
 
+        self.status_bar = QStatusBar()
+        self.setStatusBar(self.status_bar)
+
+        self.lbl_zoom = QLabel("Zoom: 100%")
+        self.lbl_zoom.setObjectName("zoom-indicator")
+        self.status_bar.addPermanentWidget(self.lbl_zoom)
+
         self.init_ui()
         self.setup_zoom_shortcuts()
 
@@ -34,6 +41,22 @@ class UIMainWindow(QMainWindow):
             font = app.font()
             font.setPointSize(self.current_font_size)
             app.setFont(font)
+
+            # Recalcular tamanhos fixos no QSS de acordo com o ratio de zoom
+            ratio = self.current_font_size / self.base_font_size
+            
+            from pathlib import Path
+            qss_path = Path(__file__).parent / "styles" / "app_theme.qss"
+            if qss_path.exists():
+                qss = qss_path.read_text(encoding="utf-8")
+                for size in [11, 13, 15, 20]:
+                    new_size = max(8, int(size * ratio))
+                    qss = qss.replace(f"font-size: {size}px;", f"font-size: {new_size}px;")
+                app.setStyleSheet(qss)
+        # Update zoom indicator
+        if hasattr(self, 'lbl_zoom'):
+            pct = round((self.current_font_size / self.base_font_size) * 100)
+            self.lbl_zoom.setText(f"Zoom: {pct}%")
 
     def setup_zoom_shortcuts(self):
         QShortcut(QKeySequence("Ctrl++"), self).activated.connect(self.zoom_in)
@@ -73,7 +96,8 @@ class UIMainWindow(QMainWindow):
         
         # Sidebar for Workstation
         self.sidebar = QListWidget()
-        self.sidebar.setFixedWidth(220)
+        self.sidebar.setMinimumWidth(180)
+        self.sidebar.setMaximumWidth(340)
         self.sidebar.addItem("Workspace (I/O) 🏠")
         self.sidebar.addItem("Parâmetros")
         self.sidebar.addItem("Disciplinas")
@@ -93,8 +117,13 @@ class UIMainWindow(QMainWindow):
         self.sidebar.currentRowChanged.connect(self.stack.setCurrentIndex)
         self.sidebar.setCurrentRow(0)
         
-        workstation_layout.addWidget(self.sidebar)
-        workstation_layout.addWidget(self.stack)
+        workstation_splitter = QSplitter(Qt.Orientation.Horizontal)
+        workstation_splitter.addWidget(self.sidebar)
+        workstation_splitter.addWidget(self.stack)
+        workstation_splitter.setSizes([220, 780])
+        workstation_splitter.setChildrenCollapsible(False)
+        
+        workstation_layout.addWidget(workstation_splitter)
         self.workstation_widget.setLayout(workstation_layout)
         
         # TAB 2: EXECUTION HUB
@@ -122,6 +151,7 @@ class UIMainWindow(QMainWindow):
             self.stack.widget(3).refresh_table()
             self.stack.widget(4).build_grid()
             self.stack.widget(4).refresh_table() # BUGFIX: Faltava isso no código anterior!
+            self.stack.widget(5).populate_combos()
             self.stack.widget(5).refresh_table()
         except Exception as e:
             print("Warning: Erro no refresh_all_tabs:", e)

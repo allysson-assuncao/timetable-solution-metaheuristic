@@ -14,7 +14,7 @@ class TabWorkspace(QWidget):
         layout = QVBoxLayout()
         
         lbl_title = QLabel("Gerenciamento de Workspace")
-        lbl_title.setStyleSheet("font-size: 18px; font-weight: bold;")
+        lbl_title.setProperty("class", "title-h1")
         layout.addWidget(lbl_title)
         
         lbl_desc = QLabel("Salve o estado atual do seu projeto em um arquivo JSON para continuar depois, ou carregue um arquivo existente.")

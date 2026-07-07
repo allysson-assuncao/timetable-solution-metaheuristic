@@ -38,7 +38,7 @@ class TabPlayback(QWidget):
         self.btn_export = QPushButton("📊 Exportar Excel (XLSX)")
         self.btn_export.clicked.connect(self.export_excel)
         self.btn_export.setEnabled(False)
-        self.btn_export.setStyleSheet("background-color: #2b9348; color: white; font-weight: bold;")
+        self.btn_export.setProperty("class", "success")
         top_panel.addWidget(self.btn_export)
         
         self.lbl_info = QLabel("Nenhuma sessão carregada.")
@@ -211,7 +211,7 @@ class TabPlayback(QWidget):
         color_indisp = QBrush(QColor("#333333"))
         color_vago = QBrush(QColor("#ffffff"))
         
-        from src.utils.color_hash import generate_stable_color
+        from src.utils.color_hash import get_hex_and_font_color
         
         for i in range(mat.shape[0]):
             for j in range(mat.shape[1]):
@@ -234,9 +234,9 @@ class TabPlayback(QWidget):
                         item.setText(f"{turma}\n{disc}")
                         item.setToolTip(f"Turma: {turma}\nDisciplina: {disc}")
                         
-                        bg_hex = generate_stable_color(f"{turma}{disc}")
+                        bg_hex, font_hex = get_hex_and_font_color(f"{turma}{disc}")
                         item.setBackground(QBrush(QColor(bg_hex)))
-                        item.setForeground(QBrush(QColor("black")))
+                        item.setForeground(QBrush(QColor(font_hex)))
                 
                 item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
                 self.table.setItem(i, j, item)

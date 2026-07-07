@@ -16,7 +16,7 @@ class TabExecution(QWidget):
         layout = QVBoxLayout()
         
         lbl_title = QLabel("Hub de Execução (Otimização)")
-        lbl_title.setStyleSheet("font-size: 18px; font-weight: bold;")
+        lbl_title.setProperty("class", "title-h1")
         layout.addWidget(lbl_title)
         
         lbl_desc = QLabel("Escolha a fonte de dados para rodar a metaheurística. O motor rodará em Multi-Start paralelo e gravará um log de auditoria permanente.")
@@ -46,7 +46,7 @@ class TabExecution(QWidget):
         
         self.btn_run = QPushButton("🚀 Iniciar Otimização")
         self.btn_run.setMinimumHeight(60)
-        self.btn_run.setStyleSheet("font-weight: bold; font-size: 16px; background-color: #0077b6; color: white;")
+        self.btn_run.setProperty("class", "primary")
         self.btn_run.clicked.connect(self.prepare_and_run)
         
         layout.addStretch()
