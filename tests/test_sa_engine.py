@@ -10,13 +10,14 @@ from src.core.state import TimetableState
 from src.core.telemetry import SessionRecorder
 from src.core.evaluator import STPEvaluator
 from src.engine.sa_optimizer import SimulatedAnnealingEngine
+from src.core.constants import DEFAULT_ALPHA, DEFAULT_BETA, DEFAULT_GAMMA, DEFAULT_T_INICIAL
 
 def test_sa_execution():
     stp = STPState(
         parametros_execucao=ParametrosExecucao(
             dias_letivos=2,
             periodos_por_dia=3,
-            pesos_objetivo=PesosObjetivo(alpha=1.0, beta=1.0, gamma=50.0)
+            pesos_objetivo=PesosObjetivo(alpha=DEFAULT_ALPHA, beta=DEFAULT_BETA, gamma=DEFAULT_GAMMA)
         ),
         professores=[
             Professor(id_professor="P1", nome="Alice", carga_maxima=6, indisponibilidades=[]),
@@ -43,15 +44,15 @@ def test_sa_execution():
     state.matrix[1, 1] = code_fis
     
     initial_cost = STPEvaluator.calculate_total_cost(
-        state.matrix, 1.0, 1.0, 50.0, 3, state.int_to_class_disc
+        state.matrix, DEFAULT_ALPHA, DEFAULT_BETA, DEFAULT_GAMMA, 3, state.int_to_class_disc
     )
     assert initial_cost >= 2000, "Estado inicial deve ter Custo altíssimo devido a 2 choques!"
     
-    engine = SimulatedAnnealingEngine(state, recorder, t_initial=500.0, t_final=0.1, alpha_cooling=0.90, iter_per_temp=100)
+    engine = SimulatedAnnealingEngine(state, recorder, t_initial=DEFAULT_T_INICIAL, t_final=0.1, alpha_cooling=0.90, iter_per_temp=100)
     engine.run()
     
     final_cost = STPEvaluator.calculate_total_cost(
-        state.matrix, 1.0, 1.0, 50.0, 3, state.int_to_class_disc
+        state.matrix, DEFAULT_ALPHA, DEFAULT_BETA, DEFAULT_GAMMA, 3, state.int_to_class_disc
     )
     
     choques = STPEvaluator.evaluate_clashes(state.matrix, state.int_to_class_disc)

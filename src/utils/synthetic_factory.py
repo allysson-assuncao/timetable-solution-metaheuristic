@@ -1,5 +1,13 @@
 import random
 
+from src.core.constants import (
+    DEFAULT_ALPHA, DEFAULT_BETA, DEFAULT_GAMMA,
+    DEFAULT_T_INICIAL, DEFAULT_T_MINIMA, DEFAULT_TAXA_RESFRIAMENTO, DEFAULT_ITER_POR_TEMP,
+    DEFAULT_DIAS_LETIVOS, DEFAULT_PERIODOS_POR_DIA,
+    KEY_PROFESSOR, KEY_PARAMETROS_EXECUCAO, KEY_PESOS_OBJETIVO, KEY_SA_PARAMETROS,
+    KEY_PROFESSORES, KEY_TURMAS, KEY_DISCIPLINAS, KEY_DEMANDAS
+)
+
 class SyntheticDataFactory:
     @staticmethod
     def generate(tier: str) -> dict:
@@ -63,14 +71,23 @@ class SyntheticDataFactory:
         ]
         
         return {
-            "parametros_execucao": {
+            KEY_PARAMETROS_EXECUCAO: {
                 "dias_letivos": dias_letivos,
                 "periodos_por_dia": periodos_por_dia,
-                "pesos_objetivo": {"alpha": 1.0, "beta": 1.0, "gamma": 50.0},
-                "sa_parametros": {"temperatura_inicial": 50.0, "temperatura_minima": 0.1, "taxa_resfriamento": 0.95, "iteracoes_por_temperatura": 500}
+                KEY_PESOS_OBJETIVO: {
+                    "alpha": DEFAULT_ALPHA,
+                    "beta": DEFAULT_BETA,
+                    "gamma": DEFAULT_GAMMA
+                },
+                KEY_SA_PARAMETROS: {
+                    "temperatura_inicial": DEFAULT_T_INICIAL,
+                    "temperatura_minima": DEFAULT_T_MINIMA,
+                    "taxa_resfriamento": DEFAULT_TAXA_RESFRIAMENTO,
+                    "iteracoes_por_temperatura": DEFAULT_ITER_POR_TEMP
+                }
             },
-            "professores": professores,
-            "turmas": turmas,
-            "disciplinas": disciplinas,
-            "demandas": demandas
+            KEY_PROFESSORES: professores,
+            KEY_TURMAS: turmas,
+            KEY_DISCIPLINAS: disciplinas,
+            KEY_DEMANDAS: demandas
         }

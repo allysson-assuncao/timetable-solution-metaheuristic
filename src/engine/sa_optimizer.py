@@ -5,9 +5,15 @@ from src.core.state import TimetableState
 from src.core.evaluator import STPEvaluator
 from src.core.telemetry import SessionRecorder
 
+from src.core.constants import (
+    DEFAULT_T_INICIAL, DEFAULT_T_MINIMA, DEFAULT_TAXA_RESFRIAMENTO,
+    FASE_SA_INICIO, FASE_SA_GLOBAL_BEST, FASE_SA_REHEATING,
+    FASE_SA_FIM_PLATEAU, FASE_SA_CONCLUIDO
+)
+
 class SimulatedAnnealingEngine:
     def __init__(self, state: TimetableState, recorder: SessionRecorder = None, 
-                 t_initial: float = 1000.0, t_final: float = 0.1, alpha_cooling: float = 0.95, 
+                 t_initial: float = DEFAULT_T_INICIAL, t_final: float = DEFAULT_T_MINIMA, alpha_cooling: float = DEFAULT_TAXA_RESFRIAMENTO, 
                  iter_per_temp: int = 500):
         self.state = state
         self.recorder = recorder
@@ -46,7 +52,7 @@ class SimulatedAnnealingEngine:
         max_stuck_plateaus = 50 
         
         if self.recorder:
-            self.recorder.record_step(iteration=global_iter, phase="SA Início", cost=current_cost, temperature=current_temp, matrix=matrix)
+            self.recorder.record_step(iteration=global_iter, phase=FASE_SA_INICIO, cost=current_cost, temperature=current_temp, matrix=matrix)
 
         while current_temp > self.t_final:
             plateau_accepted = 0
@@ -88,7 +94,7 @@ class SimulatedAnnealingEngine:
                         best_cost = current_cost
                         improved_in_plateau = True
                         if self.recorder:
-                            self.recorder.record_step(iteration=global_iter, phase="SA Global Best", cost=best_cost, temperature=current_temp, matrix=matrix)
+                            self.recorder.record_step(iteration=global_iter, phase=FASE_SA_GLOBAL_BEST, cost=best_cost, temperature=current_temp, matrix=matrix)
             
             # Resfriamento
             current_temp *= self.alpha_cooling
@@ -113,15 +119,15 @@ class SimulatedAnnealingEngine:
                     current_temp = self.t_initial * 0.7
                     stuck_counter = 0
                     if self.recorder:
-                        self.recorder.record_step(iteration=global_iter, phase="SA Reheating", cost=current_cost, temperature=current_temp, matrix=matrix)
+                        self.recorder.record_step(iteration=global_iter, phase=FASE_SA_REHEATING, cost=current_cost, temperature=current_temp, matrix=matrix)
                 else:
                     # Sem choques, ignora reaquecimento e foca em lapidar ergonomia fina
                     pass
             
             if self.recorder and plateau_accepted > 0:
-                self.recorder.record_step(iteration=global_iter, phase="SA Fim Plateau", cost=current_cost, temperature=current_temp, matrix=matrix)
+                self.recorder.record_step(iteration=global_iter, phase=FASE_SA_FIM_PLATEAU, cost=current_cost, temperature=current_temp, matrix=matrix)
                 
         if self.recorder:
-            self.recorder.record_step(iteration=global_iter, phase="SA Concluído", cost=current_cost, temperature=current_temp, matrix=matrix)
+            self.recorder.record_step(iteration=global_iter, phase=FASE_SA_CONCLUIDO, cost=current_cost, temperature=current_temp, matrix=matrix)
             
         return self.state

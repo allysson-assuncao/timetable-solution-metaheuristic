@@ -3,6 +3,11 @@ import numpy as np
 from src.core.state import TimetableState
 from src.core.telemetry import SessionRecorder
 from src.core.evaluator import STPEvaluator
+from src.core.constants import (
+    GRASP_PENALIDADE_CHOQUE, GRASP_BONUS_ADJACENCIA, GRASP_BONUS_DIA_USADO,
+    GRASP_THRESHOLD_CHOQUE,
+    FASE_GRASP_INICIAL, FASE_GRASP_CONSTRUINDO, FASE_GRASP_FINALIZADO
+)
 
 class GRASPEngine:
     def __init__(self, state: TimetableState, recorder: SessionRecorder = None, base_alpha: float = 0.3):
@@ -48,7 +53,7 @@ class GRASPEngine:
                     clash = True
                     break
         if clash:
-            cost += 50.0 # Penalidade severa para choque de turma
+            cost += GRASP_PENALIDADE_CHOQUE
             
         # 2. Agrupamento (Janelas)
         dia = col // self.periodos
@@ -60,12 +65,12 @@ class GRASPEngine:
         if col < fim_dia - 1 and matrix[row, col + 1] > 0: tem_adjacente = True
         
         if tem_adjacente:
-            cost -= 10.0
+            cost += GRASP_BONUS_ADJACENCIA
             
         # 3. Dia já utilizado
         aulas_no_dia = np.sum(matrix[row, inicio_dia:fim_dia] > 0)
         if aulas_no_dia > 0:
-            cost -= 5.0
+            cost += GRASP_BONUS_DIA_USADO
             
         return cost
 
@@ -83,14 +88,14 @@ class GRASPEngine:
         current_alpha = self.base_alpha
         
         if self.recorder:
-            self.recorder.record_step(iteration=0, phase="GRASP Inicial", cost=self._get_current_cost(), temperature=0.0, matrix=self.state.matrix)
+            self.recorder.record_step(iteration=0, phase=FASE_GRASP_INICIAL, cost=self._get_current_cost(), temperature=0.0, matrix=self.state.matrix)
             
         last_prof = None
         
         for demanda in aulas:
             if last_prof != demanda.id_professor:
                 if self.recorder and last_prof is not None:
-                    self.recorder.record_step(iteration=iteration, phase=f"GRASP Construindo", cost=self._get_current_cost(), temperature=0.0, matrix=self.state.matrix)
+                    self.recorder.record_step(iteration=iteration, phase=FASE_GRASP_CONSTRUINDO, cost=self._get_current_cost(), temperature=0.0, matrix=self.state.matrix)
                 last_prof = demanda.id_professor
                 
             row = self.state.prof_id_to_idx[demanda.id_professor]
@@ -118,7 +123,7 @@ class GRASPEngine:
             min_cost = min(candidates, key=lambda x: x[1])[1]
             max_cost = max(candidates, key=lambda x: x[1])[1]
             
-            if min_cost >= 50:
+            if min_cost >= GRASP_THRESHOLD_CHOQUE:
                 current_alpha = min(1.0, current_alpha + 0.1)
             else:
                 current_alpha = max(self.base_alpha, current_alpha - 0.05)
@@ -134,6 +139,6 @@ class GRASPEngine:
             iteration += 1
             
         if self.recorder:
-            self.recorder.record_step(iteration=iteration, phase="GRASP Finalizado", cost=self._get_current_cost(), temperature=0.0, matrix=self.state.matrix)
+            self.recorder.record_step(iteration=iteration, phase=FASE_GRASP_FINALIZADO, cost=self._get_current_cost(), temperature=0.0, matrix=self.state.matrix)
             
         return self.state

@@ -4,13 +4,13 @@
         "periodos_por_dia": 5,
         "pesos_objetivo": {
             "alpha": 1.0,
-            "beta": 1.0,
-            "gamma": 50.0
+            "beta": 4.0,
+            "gamma": 10000.0
         },
         "sa_parametros": {
-            "temperatura_inicial": 50.0,
-            "temperatura_minima": 0.1,
-            "taxa_resfriamento": 0.95,
+            "temperatura_inicial": 5000.0,
+            "temperatura_minima": 0.01,
+            "taxa_resfriamento": 0.98,
             "iteracoes_por_temperatura": 500
         }
     },

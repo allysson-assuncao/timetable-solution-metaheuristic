@@ -2,23 +2,29 @@
 from pydantic import BaseModel, Field
 from typing import List
 
+from src.core.constants import (
+    DEFAULT_ALPHA, DEFAULT_BETA, DEFAULT_GAMMA,
+    DEFAULT_T_INICIAL, DEFAULT_T_MINIMA, DEFAULT_TAXA_RESFRIAMENTO,
+    DEFAULT_ITER_POR_TEMP, DEFAULT_DIAS_LETIVOS, DEFAULT_PERIODOS_POR_DIA
+)
+
 class PesosObjetivo(BaseModel):
-    alpha: float = 1.0
-    beta: float = 0.5
-    gamma: float = 50.0
+    alpha: float = DEFAULT_ALPHA
+    beta: float = DEFAULT_BETA
+    gamma: float = DEFAULT_GAMMA
 
 class SAParametros(BaseModel):
-    temperatura_inicial: float = 100.0
-    temperatura_minima: float = 0.01
-    taxa_resfriamento: float = 0.95
-    iteracoes_por_temperatura: int = 100
+    temperatura_inicial: float = DEFAULT_T_INICIAL
+    temperatura_minima: float = DEFAULT_T_MINIMA
+    taxa_resfriamento: float = DEFAULT_TAXA_RESFRIAMENTO
+    iteracoes_por_temperatura: int = DEFAULT_ITER_POR_TEMP
     criterio_parada_iteracoes_globais: int = 5000
 
 class ParametrosExecucao(BaseModel):
     pesos_objetivo: PesosObjetivo = Field(default_factory=PesosObjetivo)
     sa_parametros: SAParametros = Field(default_factory=SAParametros)
-    periodos_por_dia: int = 5
-    dias_letivos: int = 5
+    periodos_por_dia: int = DEFAULT_PERIODOS_POR_DIA
+    dias_letivos: int = DEFAULT_DIAS_LETIVOS
 
 class Professor(BaseModel):
     id_professor: str
