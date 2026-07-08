@@ -22,7 +22,7 @@ def generate_synthetic_data(tier: str, filepath: str):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Synthetic Data Generator")
-    parser.add_argument("--tier", type=str, choices=["loose", "standard", "constrained"], required=True)
+    parser.add_argument("--tier", type=str, choices=["loose", "standard", "constrained", "if_campus"], required=True)
     parser.add_argument("--output", type=str, required=True)
     args = parser.parse_args()
     

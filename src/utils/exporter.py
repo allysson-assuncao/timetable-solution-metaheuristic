@@ -34,10 +34,64 @@ def get_border(col_data_idx: int, periodos_por_dia: int) -> Border:
     left_side  = THICK_BORDER if is_day_start else THIN_BORDER
     return Border(left=left_side, right=NO_BORDER, top=THIN_BORDER, bottom=THIN_BORDER)
 
+def _stable_tab_color(seed_text: str) -> str:
+    """
+    Derives a stable, vivid (non-pastel) tab color from a string seed.
+    Used to give each class sheet a distinct tab color in the workbook.
+    """
+    import hashlib
+    h = hashlib.md5(seed_text.encode("utf-8")).hexdigest()
+    return h[:6].upper()
+
 class ExportManager:
     def __init__(self, state: TimetableState):
         self.state = state
         self.int_to_class_disc = state.int_to_class_disc
+
+    def _build_class_pivot(self) -> dict:
+        """
+        Scans the X(M×P) matrix and builds a per-class allocation dict.
+
+        Returns:
+            {
+              class_id: {
+                (day_idx, slot_idx): (teacher_name, disc_name, turma_name)
+              }
+            }
+        The dict is keyed by (day, slot) tuples for direct Excel cell mapping.
+        """
+        matrix = self.state.matrix
+        M, P   = matrix.shape
+        ppd    = self.state.stp_state.parametros_execucao.periodos_por_dia
+
+        prof_names = {p.id_professor: p.nome
+                      for p in self.state.stp_state.professores}
+        prof_ids   = [p.id_professor for p in self.state.stp_state.professores]
+
+        turma_names = {t.id_turma: t.nome
+                       for t in self.state.stp_state.turmas}
+        disc_names  = {d.id_disciplina: d.nome
+                       for d in self.state.stp_state.disciplinas}
+
+        pivot: dict[str, dict[tuple, tuple]] = {}
+
+        for i in range(M):
+            teacher_name = prof_names.get(prof_ids[i], prof_ids[i])
+            for j in range(P):
+                val = matrix[i, j]
+                if val > 0:
+                    class_id, disc_id = self.int_to_class_disc.get(val, (None, None))
+                    if class_id is None:
+                        continue
+                    turma_name = turma_names.get(class_id, class_id)
+                    disc_name  = disc_names.get(disc_id, disc_id)
+                    day  = j // ppd
+                    slot = j % ppd
+                    if class_id not in pivot:
+                        pivot[class_id] = {}
+                    pivot[class_id][(day, slot)] = (teacher_name, disc_name, turma_name)
+
+        return pivot
 
     def export_to_excel(self, filepath: str = "Horario_Escolar_Otimizado.xlsx") -> str:
         matrix = self.state.matrix
@@ -158,4 +212,101 @@ class ExportManager:
 
         wb.save(filepath)
         print(f"Planilha exportada com sucesso em: {filepath}")
+        return filepath
+
+    def export_by_class_to_excel(
+        self, filepath: str = "Horario_Por_Turma.xlsx"
+    ) -> str:
+        """
+        Generates a multi-sheet Excel workbook with one sheet per class (Turma).
+        Each sheet presents the timetable from the class perspective:
+          Rows    = periods within the day (P1..P6)
+          Columns = days of the week (Mon..Fri)
+          Cell    = "Teacher Name – Discipline Name"
+        Color-coding uses the same get_hex_and_font_color(turma+disc) hash as
+        the Teacher-centric view, guaranteeing visual consistency.
+        Empty slots are rendered as blank white cells (no text).
+        """
+        dias_letivos     = self.state.stp_state.parametros_execucao.dias_letivos
+        periodos_por_dia = self.state.stp_state.parametros_execucao.periodos_por_dia
+
+        DIAS_SEMANA = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"]
+        turma_names = {t.id_turma: t.nome for t in self.state.stp_state.turmas}
+
+        pivot = self._build_class_pivot()
+        wb    = openpyxl.Workbook()
+        wb.remove(wb.active)  # Remove the default empty sheet
+
+        # ── Shared style objects (created once, reused) ──────────────────────────
+        header_font  = Font(name="Calibri", bold=True, size=11, color=HEADER_FONT)
+        header_fill  = PatternFill("solid", fgColor=HEADER_BG)
+        header_align = Alignment(horizontal="center", vertical="center", wrap_text=True)
+
+        slot_label_font  = Font(name="Calibri", bold=True, size=10, color=HEADER_FONT)
+        slot_label_fill  = PatternFill("solid", fgColor="2A2A3E")
+        slot_label_align = Alignment(horizontal="left", vertical="center")
+
+        # ── One sheet per class ───────────────────────────────────────────────────
+        for turma in self.state.stp_state.turmas:
+            class_id   = turma.id_turma
+            turma_name = turma_names.get(class_id, class_id)
+            allocations = pivot.get(class_id, {})
+
+            # Sheet title is capped at 31 chars (Excel limit)
+            ws = wb.create_sheet(title=turma_name[:31])
+            ws.sheet_properties.tabColor = _stable_tab_color(turma_name)
+            ws.freeze_panes = "B2"
+
+            # ── Header Row (days) ─────────────────────────────────────────────────
+            ws.cell(row=1, column=1, value="Período").font       = header_font
+            ws.cell(row=1, column=1).fill                        = header_fill
+            ws.cell(row=1, column=1).alignment                   = header_align
+            ws.column_dimensions["A"].width = 12
+
+            for d in range(dias_letivos):
+                cell = ws.cell(row=1, column=d + 2, value=DIAS_SEMANA[d % 7])
+                cell.font      = header_font
+                cell.fill      = header_fill
+                cell.alignment = header_align
+            ws.row_dimensions[1].height = 32
+
+            # ── Data Rows (one per period-within-day) ─────────────────────────────
+            for slot in range(periodos_por_dia):
+                row_idx = slot + 2
+                # Row label: "P1", "P2", ...
+                label_cell = ws.cell(row=row_idx, column=1, value=f"P{slot + 1}")
+                label_cell.font      = slot_label_font
+                label_cell.fill      = slot_label_fill
+                label_cell.alignment = slot_label_align
+                ws.row_dimensions[row_idx].height = 42
+
+                for day in range(dias_letivos):
+                    col_idx = day + 2
+                    cell    = ws.cell(row=row_idx, column=col_idx)
+                    key     = (day, slot)
+
+                    if key in allocations:
+                        teacher_name, disc_name, _ = allocations[key]
+                        seed_str = f"{turma_name}{disc_name}"
+                        bg_hex, font_hex = get_hex_and_font_color(seed_str)
+
+                        cell.value     = f"{teacher_name}\n({disc_name})"
+                        cell.fill      = PatternFill("solid", fgColor=bg_hex.replace("#", ""))
+                        cell.font      = Font(name="Calibri", size=9, bold=True,
+                                              color=font_hex.replace("#", ""))
+                        cell.alignment = Alignment(horizontal="center", vertical="center",
+                                                   wrap_text=True)
+                        cell.border    = get_border(day, dias_letivos)
+                    else:
+                        # Empty slot: blank white cell
+                        cell.fill      = PatternFill("solid", fgColor=FREE_BG)
+                        cell.value     = ""
+                        cell.border    = get_border(day, dias_letivos)
+
+            # ── Auto-width for all columns ─────────────────────────────────────────
+            for d in range(dias_letivos + 1):
+                auto_width(ws, get_column_letter(d + 1))
+
+        wb.save(filepath)
+        print(f"Planilha por turma exportada com sucesso em: {filepath}")
         return filepath

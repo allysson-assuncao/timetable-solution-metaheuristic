@@ -1,0 +1,2285 @@
+{
+    "parametros_execucao": {
+        "dias_letivos": 5,
+        "periodos_por_dia": 6,
+        "pesos_objetivo": {
+            "alpha": 1.0,
+            "beta": 4.0,
+            "gamma": 10000.0
+        },
+        "sa_parametros": {
+            "temperatura_inicial": 5000.0,
+            "temperatura_minima": 0.01,
+            "taxa_resfriamento": 0.98,
+            "iteracoes_por_temperatura": 500
+        }
+    },
+    "professores": [
+        {
+            "id_professor": "P01",
+            "nome": "Prof. Sistemas de Informa\u00e7\u00e3o 01",
+            "carga_maxima": 30,
+            "indisponibilidades": [
+                1,
+                18,
+                25
+            ]
+        },
+        {
+            "id_professor": "P02",
+            "nome": "Prof. Sistemas de Informa\u00e7\u00e3o 02",
+            "carga_maxima": 30,
+            "indisponibilidades": [
+                1,
+                5,
+                14
+            ]
+        },
+        {
+            "id_professor": "P03",
+            "nome": "Prof. Sistemas de Informa\u00e7\u00e3o 03",
+            "carga_maxima": 30,
+            "indisponibilidades": [
+                16,
+                23
+            ]
+        },
+        {
+            "id_professor": "P04",
+            "nome": "Prof. Sistemas de Informa\u00e7\u00e3o 04",
+            "carga_maxima": 30,
+            "indisponibilidades": [
+                19,
+                25,
+                27
+            ]
+        },
+        {
+            "id_professor": "P05",
+            "nome": "Prof. Sistemas de Informa\u00e7\u00e3o 05",
+            "carga_maxima": 30,
+            "indisponibilidades": [
+                17,
+                18,
+                22
+            ]
+        },
+        {
+            "id_professor": "P06",
+            "nome": "Prof. Sistemas de Informa\u00e7\u00e3o 06",
+            "carga_maxima": 30,
+            "indisponibilidades": [
+                2,
+                7
+            ]
+        },
+        {
+            "id_professor": "P07",
+            "nome": "Prof. Sistemas de Informa\u00e7\u00e3o 07",
+            "carga_maxima": 30,
+            "indisponibilidades": [
+                6,
+                15,
+                19
+            ]
+        },
+        {
+            "id_professor": "P08",
+            "nome": "Prof. Sistemas de Informa\u00e7\u00e3o 08",
+            "carga_maxima": 30,
+            "indisponibilidades": [
+                8,
+                18,
+                22,
+                29
+            ]
+        },
+        {
+            "id_professor": "P09",
+            "nome": "Prof. Sistemas de Informa\u00e7\u00e3o 09",
+            "carga_maxima": 30,
+            "indisponibilidades": [
+                19
+            ]
+        },
+        {
+            "id_professor": "P10",
+            "nome": "Prof. Administra\u00e7\u00e3o 10",
+            "carga_maxima": 30,
+            "indisponibilidades": [
+                24
+            ]
+        },
+        {
+            "id_professor": "P11",
+            "nome": "Prof. Administra\u00e7\u00e3o 11",
+            "carga_maxima": 30,
+            "indisponibilidades": [
+                12,
+                18,
+                25,
+                30
+            ]
+        },
+        {
+            "id_professor": "P12",
+            "nome": "Prof. Administra\u00e7\u00e3o 12",
+            "carga_maxima": 30,
+            "indisponibilidades": [
+                6
+            ]
+        },
+        {
+            "id_professor": "P13",
+            "nome": "Prof. Administra\u00e7\u00e3o 13",
+            "carga_maxima": 30,
+            "indisponibilidades": [
+                5,
+                8,
+                23
+            ]
+        },
+        {
+            "id_professor": "P14",
+            "nome": "Prof. Administra\u00e7\u00e3o 14",
+            "carga_maxima": 30,
+            "indisponibilidades": [
+                7,
+                13,
+                16,
+                17,
+                18,
+                23
+            ]
+        },
+        {
+            "id_professor": "P15",
+            "nome": "Prof. Administra\u00e7\u00e3o 15",
+            "carga_maxima": 30,
+            "indisponibilidades": [
+                12,
+                20
+            ]
+        },
+        {
+            "id_professor": "P16",
+            "nome": "Prof. Administra\u00e7\u00e3o 16",
+            "carga_maxima": 30,
+            "indisponibilidades": [
+                1,
+                5,
+                13,
+                27
+            ]
+        },
+        {
+            "id_professor": "P17",
+            "nome": "Prof. Administra\u00e7\u00e3o 17",
+            "carga_maxima": 30,
+            "indisponibilidades": [
+                11
+            ]
+        },
+        {
+            "id_professor": "P18",
+            "nome": "Prof. Administra\u00e7\u00e3o 18",
+            "carga_maxima": 30,
+            "indisponibilidades": [
+                6,
+                21,
+                29
+            ]
+        },
+        {
+            "id_professor": "P19",
+            "nome": "Prof. Meteorologia 19",
+            "carga_maxima": 30,
+            "indisponibilidades": [
+                7,
+                12,
+                15,
+                16
+            ]
+        },
+        {
+            "id_professor": "P20",
+            "nome": "Prof. Meteorologia 20",
+            "carga_maxima": 30,
+            "indisponibilidades": [
+                1,
+                12,
+                13,
+                14,
+                19,
+                21
+            ]
+        },
+        {
+            "id_professor": "P21",
+            "nome": "Prof. Meteorologia 21",
+            "carga_maxima": 30,
+            "indisponibilidades": []
+        },
+        {
+            "id_professor": "P22",
+            "nome": "Prof. Meteorologia 22",
+            "carga_maxima": 30,
+            "indisponibilidades": [
+                5,
+                10,
+                23
+            ]
+        },
+        {
+            "id_professor": "P23",
+            "nome": "Prof. Meteorologia 23",
+            "carga_maxima": 30,
+            "indisponibilidades": [
+                15,
+                20
+            ]
+        },
+        {
+            "id_professor": "P24",
+            "nome": "Prof. Meteorologia 24",
+            "carga_maxima": 30,
+            "indisponibilidades": [
+                16,
+                22,
+                27
+            ]
+        },
+        {
+            "id_professor": "P25",
+            "nome": "Prof. Meteorologia 25",
+            "carga_maxima": 30,
+            "indisponibilidades": [
+                5,
+                12,
+                13,
+                25
+            ]
+        },
+        {
+            "id_professor": "P26",
+            "nome": "Prof. Meteorologia 26",
+            "carga_maxima": 30,
+            "indisponibilidades": [
+                16
+            ]
+        },
+        {
+            "id_professor": "P27",
+            "nome": "Prof. Meteorologia 27",
+            "carga_maxima": 30,
+            "indisponibilidades": [
+                2,
+                21,
+                26
+            ]
+        },
+        {
+            "id_professor": "P28",
+            "nome": "Prof. Generalista 28",
+            "carga_maxima": 30,
+            "indisponibilidades": [
+                19
+            ]
+        },
+        {
+            "id_professor": "P29",
+            "nome": "Prof. Generalista 29",
+            "carga_maxima": 30,
+            "indisponibilidades": []
+        },
+        {
+            "id_professor": "P30",
+            "nome": "Prof. Generalista 30",
+            "carga_maxima": 30,
+            "indisponibilidades": [
+                2,
+                24,
+                25,
+                26
+            ]
+        }
+    ],
+    "turmas": [
+        {
+            "id_turma": "SI1",
+            "nome": "SI \u2013 1\u00ba Semestre"
+        },
+        {
+            "id_turma": "SI3",
+            "nome": "SI \u2013 3\u00ba Semestre"
+        },
+        {
+            "id_turma": "SI5",
+            "nome": "SI \u2013 5\u00ba Semestre"
+        },
+        {
+            "id_turma": "SI7",
+            "nome": "SI \u2013 7\u00ba Semestre"
+        },
+        {
+            "id_turma": "ADM1",
+            "nome": "ADM \u2013 1\u00ba Semestre"
+        },
+        {
+            "id_turma": "ADM3",
+            "nome": "ADM \u2013 3\u00ba Semestre"
+        },
+        {
+            "id_turma": "ADM5",
+            "nome": "ADM \u2013 5\u00ba Semestre"
+        },
+        {
+            "id_turma": "ADM7",
+            "nome": "ADM \u2013 7\u00ba Semestre"
+        },
+        {
+            "id_turma": "MET1",
+            "nome": "MET \u2013 1\u00ba Semestre"
+        },
+        {
+            "id_turma": "MET3",
+            "nome": "MET \u2013 3\u00ba Semestre"
+        },
+        {
+            "id_turma": "MET5",
+            "nome": "MET \u2013 5\u00ba Semestre"
+        },
+        {
+            "id_turma": "MET7",
+            "nome": "MET \u2013 7\u00ba Semestre"
+        }
+    ],
+    "disciplinas": [
+        {
+            "id_disciplina": "ALG",
+            "nome": "Algoritmos"
+        },
+        {
+            "id_disciplina": "ESD",
+            "nome": "Estruturas de Dados"
+        },
+        {
+            "id_disciplina": "BDI",
+            "nome": "Banco de Dados"
+        },
+        {
+            "id_disciplina": "RDC",
+            "nome": "Redes de Computadores"
+        },
+        {
+            "id_disciplina": "ESW",
+            "nome": "Engenharia de Software"
+        },
+        {
+            "id_disciplina": "CON",
+            "nome": "Contabilidade"
+        },
+        {
+            "id_disciplina": "GPE",
+            "nome": "Gest\u00e3o de Pessoas"
+        },
+        {
+            "id_disciplina": "MKT",
+            "nome": "Marketing"
+        },
+        {
+            "id_disciplina": "FIN",
+            "nome": "Finan\u00e7as Corporativas"
+        },
+        {
+            "id_disciplina": "DIR",
+            "nome": "Direito Empresarial"
+        },
+        {
+            "id_disciplina": "CLI",
+            "nome": "Climatologia"
+        },
+        {
+            "id_disciplina": "FAT",
+            "nome": "F\u00edsica da Atmosfera"
+        },
+        {
+            "id_disciplina": "MNU",
+            "nome": "Modelagem Num\u00e9rica"
+        },
+        {
+            "id_disciplina": "SIN",
+            "nome": "Meteorologia Sin\u00f3tica"
+        },
+        {
+            "id_disciplina": "INS",
+            "nome": "Instrumenta\u00e7\u00e3o Meteorol\u00f3gica"
+        },
+        {
+            "id_disciplina": "CAL1",
+            "nome": "C\u00e1lculo I"
+        },
+        {
+            "id_disciplina": "CAL2",
+            "nome": "C\u00e1lculo II"
+        },
+        {
+            "id_disciplina": "ING",
+            "nome": "Ingl\u00eas T\u00e9cnico"
+        },
+        {
+            "id_disciplina": "MET_",
+            "nome": "Metodologia Cient\u00edfica"
+        }
+    ],
+    "demandas": [
+        {
+            "id_professor": "P03",
+            "id_turma": "SI1",
+            "id_disciplina": "RDC",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P06",
+            "id_turma": "SI3",
+            "id_disciplina": "ING",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P07",
+            "id_turma": "SI5",
+            "id_disciplina": "ESW",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P08",
+            "id_turma": "SI7",
+            "id_disciplina": "ESD",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P12",
+            "id_turma": "ADM1",
+            "id_disciplina": "CON",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P29",
+            "id_turma": "ADM3",
+            "id_disciplina": "MET_",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P15",
+            "id_turma": "ADM5",
+            "id_disciplina": "FIN",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P11",
+            "id_turma": "ADM7",
+            "id_disciplina": "CON",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P27",
+            "id_turma": "MET1",
+            "id_disciplina": "INS",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P22",
+            "id_turma": "MET3",
+            "id_disciplina": "ING",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P28",
+            "id_turma": "MET5",
+            "id_disciplina": "MNU",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P19",
+            "id_turma": "MET7",
+            "id_disciplina": "MNU",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P28",
+            "id_turma": "SI1",
+            "id_disciplina": "CAL1",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P01",
+            "id_turma": "SI3",
+            "id_disciplina": "ESD",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P03",
+            "id_turma": "SI5",
+            "id_disciplina": "MET_",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P02",
+            "id_turma": "SI7",
+            "id_disciplina": "RDC",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P11",
+            "id_turma": "ADM1",
+            "id_disciplina": "CAL2",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P18",
+            "id_turma": "ADM3",
+            "id_disciplina": "DIR",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P13",
+            "id_turma": "ADM5",
+            "id_disciplina": "CON",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P15",
+            "id_turma": "ADM7",
+            "id_disciplina": "DIR",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P23",
+            "id_turma": "MET1",
+            "id_disciplina": "MET_",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P29",
+            "id_turma": "MET3",
+            "id_disciplina": "CLI",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P22",
+            "id_turma": "MET5",
+            "id_disciplina": "SIN",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P20",
+            "id_turma": "MET7",
+            "id_disciplina": "ING",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P28",
+            "id_turma": "SI1",
+            "id_disciplina": "ESW",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P09",
+            "id_turma": "SI3",
+            "id_disciplina": "ING",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P08",
+            "id_turma": "SI5",
+            "id_disciplina": "ALG",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P01",
+            "id_turma": "SI7",
+            "id_disciplina": "RDC",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P14",
+            "id_turma": "ADM1",
+            "id_disciplina": "CAL1",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P10",
+            "id_turma": "ADM3",
+            "id_disciplina": "CON",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P30",
+            "id_turma": "ADM5",
+            "id_disciplina": "MET_",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P11",
+            "id_turma": "ADM7",
+            "id_disciplina": "DIR",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P23",
+            "id_turma": "MET1",
+            "id_disciplina": "SIN",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P22",
+            "id_turma": "MET3",
+            "id_disciplina": "MNU",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P27",
+            "id_turma": "MET5",
+            "id_disciplina": "FAT",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P25",
+            "id_turma": "MET7",
+            "id_disciplina": "CAL1",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P07",
+            "id_turma": "SI1",
+            "id_disciplina": "ESD",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P03",
+            "id_turma": "SI3",
+            "id_disciplina": "RDC",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P02",
+            "id_turma": "SI5",
+            "id_disciplina": "ING",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P01",
+            "id_turma": "SI7",
+            "id_disciplina": "ING",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P28",
+            "id_turma": "ADM1",
+            "id_disciplina": "DIR",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P12",
+            "id_turma": "ADM3",
+            "id_disciplina": "MKT",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P18",
+            "id_turma": "ADM5",
+            "id_disciplina": "CON",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P14",
+            "id_turma": "ADM7",
+            "id_disciplina": "CON",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P25",
+            "id_turma": "MET1",
+            "id_disciplina": "INS",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P26",
+            "id_turma": "MET3",
+            "id_disciplina": "FAT",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P19",
+            "id_turma": "MET5",
+            "id_disciplina": "CLI",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P22",
+            "id_turma": "MET7",
+            "id_disciplina": "MNU",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P04",
+            "id_turma": "SI1",
+            "id_disciplina": "ALG",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P06",
+            "id_turma": "SI3",
+            "id_disciplina": "ESW",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P01",
+            "id_turma": "SI5",
+            "id_disciplina": "CAL1",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P28",
+            "id_turma": "SI7",
+            "id_disciplina": "ESW",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P18",
+            "id_turma": "ADM1",
+            "id_disciplina": "ING",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P12",
+            "id_turma": "ADM3",
+            "id_disciplina": "CON",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P30",
+            "id_turma": "ADM5",
+            "id_disciplina": "DIR",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P15",
+            "id_turma": "ADM7",
+            "id_disciplina": "CAL1",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P24",
+            "id_turma": "MET1",
+            "id_disciplina": "INS",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P19",
+            "id_turma": "MET3",
+            "id_disciplina": "SIN",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P23",
+            "id_turma": "MET5",
+            "id_disciplina": "CLI",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P21",
+            "id_turma": "MET7",
+            "id_disciplina": "CAL1",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P30",
+            "id_turma": "SI1",
+            "id_disciplina": "ALG",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P08",
+            "id_turma": "SI3",
+            "id_disciplina": "BDI",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P05",
+            "id_turma": "SI5",
+            "id_disciplina": "ALG",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P03",
+            "id_turma": "SI7",
+            "id_disciplina": "ING",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P15",
+            "id_turma": "ADM1",
+            "id_disciplina": "MKT",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P11",
+            "id_turma": "ADM3",
+            "id_disciplina": "MKT",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P16",
+            "id_turma": "ADM7",
+            "id_disciplina": "CAL2",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P24",
+            "id_turma": "MET1",
+            "id_disciplina": "CAL2",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P27",
+            "id_turma": "MET3",
+            "id_disciplina": "SIN",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P30",
+            "id_turma": "MET5",
+            "id_disciplina": "FAT",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P29",
+            "id_turma": "MET7",
+            "id_disciplina": "FAT",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P05",
+            "id_turma": "SI1",
+            "id_disciplina": "ESW",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P04",
+            "id_turma": "SI3",
+            "id_disciplina": "ALG",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P29",
+            "id_turma": "SI5",
+            "id_disciplina": "RDC",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P03",
+            "id_turma": "SI7",
+            "id_disciplina": "CAL2",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P17",
+            "id_turma": "ADM1",
+            "id_disciplina": "MKT",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P10",
+            "id_turma": "ADM3",
+            "id_disciplina": "CAL2",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P18",
+            "id_turma": "ADM5",
+            "id_disciplina": "MKT",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P12",
+            "id_turma": "ADM7",
+            "id_disciplina": "GPE",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P20",
+            "id_turma": "MET1",
+            "id_disciplina": "CAL2",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P28",
+            "id_turma": "MET3",
+            "id_disciplina": "MNU",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P23",
+            "id_turma": "MET5",
+            "id_disciplina": "MET_",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P24",
+            "id_turma": "MET7",
+            "id_disciplina": "SIN",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P05",
+            "id_turma": "SI1",
+            "id_disciplina": "BDI",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P07",
+            "id_turma": "SI3",
+            "id_disciplina": "ALG",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P01",
+            "id_turma": "SI5",
+            "id_disciplina": "RDC",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P02",
+            "id_turma": "SI7",
+            "id_disciplina": "MET_",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P10",
+            "id_turma": "ADM1",
+            "id_disciplina": "DIR",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P15",
+            "id_turma": "ADM5",
+            "id_disciplina": "DIR",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P14",
+            "id_turma": "ADM7",
+            "id_disciplina": "ING",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P19",
+            "id_turma": "MET1",
+            "id_disciplina": "FAT",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P21",
+            "id_turma": "MET3",
+            "id_disciplina": "INS",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P26",
+            "id_turma": "MET5",
+            "id_disciplina": "ING",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P28",
+            "id_turma": "MET7",
+            "id_disciplina": "SIN",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P04",
+            "id_turma": "SI1",
+            "id_disciplina": "ESD",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P02",
+            "id_turma": "SI3",
+            "id_disciplina": "CAL1",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P28",
+            "id_turma": "SI7",
+            "id_disciplina": "CAL2",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P10",
+            "id_turma": "ADM1",
+            "id_disciplina": "CON",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P28",
+            "id_turma": "ADM3",
+            "id_disciplina": "MKT",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P13",
+            "id_turma": "ADM5",
+            "id_disciplina": "CAL2",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P12",
+            "id_turma": "ADM7",
+            "id_disciplina": "CON",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P25",
+            "id_turma": "MET1",
+            "id_disciplina": "CAL2",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P27",
+            "id_turma": "MET3",
+            "id_disciplina": "FAT",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P24",
+            "id_turma": "MET5",
+            "id_disciplina": "MNU",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P22",
+            "id_turma": "MET7",
+            "id_disciplina": "FAT",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P06",
+            "id_turma": "SI1",
+            "id_disciplina": "ING",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P29",
+            "id_turma": "SI3",
+            "id_disciplina": "CAL1",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P02",
+            "id_turma": "SI5",
+            "id_disciplina": "ESW",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P09",
+            "id_turma": "SI7",
+            "id_disciplina": "ESD",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P14",
+            "id_turma": "ADM1",
+            "id_disciplina": "CON",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P15",
+            "id_turma": "ADM3",
+            "id_disciplina": "GPE",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P12",
+            "id_turma": "ADM7",
+            "id_disciplina": "MKT",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P19",
+            "id_turma": "MET1",
+            "id_disciplina": "CAL2",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P30",
+            "id_turma": "MET3",
+            "id_disciplina": "ING",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P20",
+            "id_turma": "MET5",
+            "id_disciplina": "INS",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P26",
+            "id_turma": "MET7",
+            "id_disciplina": "MET_",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P05",
+            "id_turma": "SI3",
+            "id_disciplina": "ESW",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P09",
+            "id_turma": "SI5",
+            "id_disciplina": "RDC",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P29",
+            "id_turma": "SI7",
+            "id_disciplina": "ALG",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P13",
+            "id_turma": "ADM1",
+            "id_disciplina": "GPE",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P29",
+            "id_turma": "ADM3",
+            "id_disciplina": "GPE",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P12",
+            "id_turma": "ADM7",
+            "id_disciplina": "DIR",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P20",
+            "id_turma": "MET1",
+            "id_disciplina": "CLI",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P27",
+            "id_turma": "MET3",
+            "id_disciplina": "CLI",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P19",
+            "id_turma": "MET5",
+            "id_disciplina": "MNU",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P21",
+            "id_turma": "MET7",
+            "id_disciplina": "INS",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P07",
+            "id_turma": "SI1",
+            "id_disciplina": "ESW",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P29",
+            "id_turma": "SI3",
+            "id_disciplina": "RDC",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P04",
+            "id_turma": "SI7",
+            "id_disciplina": "ESW",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P14",
+            "id_turma": "ADM1",
+            "id_disciplina": "FIN",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P16",
+            "id_turma": "ADM3",
+            "id_disciplina": "MKT",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P12",
+            "id_turma": "ADM5",
+            "id_disciplina": "FIN",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P30",
+            "id_turma": "ADM7",
+            "id_disciplina": "CON",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P27",
+            "id_turma": "MET1",
+            "id_disciplina": "ING",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P21",
+            "id_turma": "MET3",
+            "id_disciplina": "MNU",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P23",
+            "id_turma": "MET5",
+            "id_disciplina": "ING",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P26",
+            "id_turma": "MET7",
+            "id_disciplina": "CLI",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P07",
+            "id_turma": "SI1",
+            "id_disciplina": "CAL1",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P30",
+            "id_turma": "SI3",
+            "id_disciplina": "ESD",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P15",
+            "id_turma": "ADM1",
+            "id_disciplina": "GPE",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P13",
+            "id_turma": "ADM3",
+            "id_disciplina": "MET_",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P17",
+            "id_turma": "ADM5",
+            "id_disciplina": "MKT",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P29",
+            "id_turma": "ADM7",
+            "id_disciplina": "MET_",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P28",
+            "id_turma": "MET1",
+            "id_disciplina": "ING",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P22",
+            "id_turma": "MET3",
+            "id_disciplina": "MET_",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P29",
+            "id_turma": "MET5",
+            "id_disciplina": "FAT",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P07",
+            "id_turma": "SI1",
+            "id_disciplina": "MET_",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P28",
+            "id_turma": "SI3",
+            "id_disciplina": "CAL1",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P06",
+            "id_turma": "SI7",
+            "id_disciplina": "ESD",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P18",
+            "id_turma": "ADM1",
+            "id_disciplina": "GPE",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P16",
+            "id_turma": "ADM3",
+            "id_disciplina": "CON",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P30",
+            "id_turma": "ADM5",
+            "id_disciplina": "CON",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P15",
+            "id_turma": "ADM7",
+            "id_disciplina": "CON",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P23",
+            "id_turma": "MET1",
+            "id_disciplina": "MNU",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P22",
+            "id_turma": "MET3",
+            "id_disciplina": "CLI",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P25",
+            "id_turma": "MET5",
+            "id_disciplina": "SIN",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P27",
+            "id_turma": "MET7",
+            "id_disciplina": "MNU",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P03",
+            "id_turma": "SI1",
+            "id_disciplina": "CAL2",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P09",
+            "id_turma": "SI3",
+            "id_disciplina": "ESD",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P08",
+            "id_turma": "SI5",
+            "id_disciplina": "CAL2",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P30",
+            "id_turma": "SI7",
+            "id_disciplina": "MET_",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P18",
+            "id_turma": "ADM3",
+            "id_disciplina": "CAL2",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P11",
+            "id_turma": "ADM5",
+            "id_disciplina": "DIR",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P13",
+            "id_turma": "ADM7",
+            "id_disciplina": "CAL1",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P22",
+            "id_turma": "MET1",
+            "id_disciplina": "SIN",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P28",
+            "id_turma": "MET3",
+            "id_disciplina": "CAL1",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P30",
+            "id_turma": "SI1",
+            "id_disciplina": "CAL1",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P28",
+            "id_turma": "SI3",
+            "id_disciplina": "ESW",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P08",
+            "id_turma": "SI5",
+            "id_disciplina": "ESD",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P29",
+            "id_turma": "SI7",
+            "id_disciplina": "ESD",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P17",
+            "id_turma": "ADM1",
+            "id_disciplina": "DIR",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P10",
+            "id_turma": "ADM5",
+            "id_disciplina": "CON",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P28",
+            "id_turma": "MET1",
+            "id_disciplina": "FAT",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P23",
+            "id_turma": "MET3",
+            "id_disciplina": "FAT",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P27",
+            "id_turma": "MET5",
+            "id_disciplina": "MNU",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P25",
+            "id_turma": "MET7",
+            "id_disciplina": "ING",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P30",
+            "id_turma": "SI1",
+            "id_disciplina": "ESD",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P04",
+            "id_turma": "SI3",
+            "id_disciplina": "CAL2",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P06",
+            "id_turma": "SI5",
+            "id_disciplina": "BDI",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P28",
+            "id_turma": "SI7",
+            "id_disciplina": "ING",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P11",
+            "id_turma": "ADM1",
+            "id_disciplina": "MKT",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P17",
+            "id_turma": "ADM3",
+            "id_disciplina": "CAL1",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P13",
+            "id_turma": "ADM5",
+            "id_disciplina": "MKT",
+            "quantidade_aulas": 3
+        },
+        {
+            "id_professor": "P28",
+            "id_turma": "ADM7",
+            "id_disciplina": "CON",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P26",
+            "id_turma": "MET1",
+            "id_disciplina": "CLI",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P29",
+            "id_turma": "MET3",
+            "id_disciplina": "MET_",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P20",
+            "id_turma": "MET5",
+            "id_disciplina": "CLI",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P23",
+            "id_turma": "MET7",
+            "id_disciplina": "SIN",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P29",
+            "id_turma": "SI1",
+            "id_disciplina": "RDC",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P28",
+            "id_turma": "SI3",
+            "id_disciplina": "ESD",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P03",
+            "id_turma": "SI5",
+            "id_disciplina": "ESW",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P30",
+            "id_turma": "SI7",
+            "id_disciplina": "ESD",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P16",
+            "id_turma": "ADM1",
+            "id_disciplina": "CAL2",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P29",
+            "id_turma": "ADM7",
+            "id_disciplina": "CON",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P22",
+            "id_turma": "MET1",
+            "id_disciplina": "INS",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P29",
+            "id_turma": "MET5",
+            "id_disciplina": "SIN",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P21",
+            "id_turma": "MET7",
+            "id_disciplina": "MET_",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P08",
+            "id_turma": "SI1",
+            "id_disciplina": "ALG",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P03",
+            "id_turma": "SI3",
+            "id_disciplina": "ESD",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P01",
+            "id_turma": "SI5",
+            "id_disciplina": "ALG",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P02",
+            "id_turma": "SI7",
+            "id_disciplina": "CAL1",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P14",
+            "id_turma": "ADM1",
+            "id_disciplina": "DIR",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P11",
+            "id_turma": "ADM3",
+            "id_disciplina": "FIN",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P18",
+            "id_turma": "ADM7",
+            "id_disciplina": "CON",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P19",
+            "id_turma": "MET1",
+            "id_disciplina": "MET_",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P24",
+            "id_turma": "MET3",
+            "id_disciplina": "CAL2",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P30",
+            "id_turma": "MET5",
+            "id_disciplina": "INS",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P23",
+            "id_turma": "MET7",
+            "id_disciplina": "INS",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P05",
+            "id_turma": "SI1",
+            "id_disciplina": "CAL1",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P02",
+            "id_turma": "SI3",
+            "id_disciplina": "ING",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P03",
+            "id_turma": "SI7",
+            "id_disciplina": "CAL1",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P12",
+            "id_turma": "ADM1",
+            "id_disciplina": "DIR",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P16",
+            "id_turma": "ADM3",
+            "id_disciplina": "CAL2",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P17",
+            "id_turma": "ADM5",
+            "id_disciplina": "DIR",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P18",
+            "id_turma": "ADM7",
+            "id_disciplina": "DIR",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P30",
+            "id_turma": "MET1",
+            "id_disciplina": "ING",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P25",
+            "id_turma": "MET3",
+            "id_disciplina": "FAT",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P29",
+            "id_turma": "MET7",
+            "id_disciplina": "MNU",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P02",
+            "id_turma": "SI1",
+            "id_disciplina": "ESW",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P30",
+            "id_turma": "ADM1",
+            "id_disciplina": "CON",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P16",
+            "id_turma": "ADM3",
+            "id_disciplina": "ING",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P17",
+            "id_turma": "ADM5",
+            "id_disciplina": "MET_",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P11",
+            "id_turma": "ADM7",
+            "id_disciplina": "MET_",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P25",
+            "id_turma": "MET1",
+            "id_disciplina": "CLI",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P26",
+            "id_turma": "MET3",
+            "id_disciplina": "ING",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P30",
+            "id_turma": "MET5",
+            "id_disciplina": "CLI",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P24",
+            "id_turma": "MET7",
+            "id_disciplina": "ING",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P03",
+            "id_turma": "SI3",
+            "id_disciplina": "ESW",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P28",
+            "id_turma": "SI7",
+            "id_disciplina": "RDC",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P29",
+            "id_turma": "ADM1",
+            "id_disciplina": "FIN",
+            "quantidade_aulas": 3
+        },
+        {
+            "id_professor": "P28",
+            "id_turma": "ADM5",
+            "id_disciplina": "FIN",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P26",
+            "id_turma": "MET1",
+            "id_disciplina": "MNU",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P25",
+            "id_turma": "MET5",
+            "id_disciplina": "CLI",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P23",
+            "id_turma": "MET7",
+            "id_disciplina": "CLI",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P04",
+            "id_turma": "SI1",
+            "id_disciplina": "RDC",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P05",
+            "id_turma": "SI3",
+            "id_disciplina": "ESD",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P06",
+            "id_turma": "SI5",
+            "id_disciplina": "RDC",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P07",
+            "id_turma": "SI7",
+            "id_disciplina": "ALG",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P29",
+            "id_turma": "ADM1",
+            "id_disciplina": "ING",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P18",
+            "id_turma": "ADM3",
+            "id_disciplina": "MKT",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P16",
+            "id_turma": "ADM5",
+            "id_disciplina": "MKT",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P21",
+            "id_turma": "MET1",
+            "id_disciplina": "MET_",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P28",
+            "id_turma": "MET3",
+            "id_disciplina": "ING",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P23",
+            "id_turma": "MET5",
+            "id_disciplina": "MNU",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P26",
+            "id_turma": "MET7",
+            "id_disciplina": "CAL1",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P06",
+            "id_turma": "SI1",
+            "id_disciplina": "MET_",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P09",
+            "id_turma": "SI3",
+            "id_disciplina": "ESW",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P03",
+            "id_turma": "SI5",
+            "id_disciplina": "BDI",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P15",
+            "id_turma": "ADM5",
+            "id_disciplina": "GPE",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P17",
+            "id_turma": "ADM7",
+            "id_disciplina": "FIN",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P20",
+            "id_turma": "MET1",
+            "id_disciplina": "INS",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P28",
+            "id_turma": "MET3",
+            "id_disciplina": "FAT",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P19",
+            "id_turma": "MET5",
+            "id_disciplina": "ING",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P29",
+            "id_turma": "SI1",
+            "id_disciplina": "MET_",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P07",
+            "id_turma": "SI5",
+            "id_disciplina": "ING",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P08",
+            "id_turma": "SI7",
+            "id_disciplina": "CAL2",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P14",
+            "id_turma": "ADM1",
+            "id_disciplina": "GPE",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P16",
+            "id_turma": "ADM3",
+            "id_disciplina": "MET_",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P13",
+            "id_turma": "ADM7",
+            "id_disciplina": "FIN",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P27",
+            "id_turma": "MET1",
+            "id_disciplina": "CLI",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P22",
+            "id_turma": "MET5",
+            "id_disciplina": "INS",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P03",
+            "id_turma": "SI1",
+            "id_disciplina": "ING",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P08",
+            "id_turma": "SI3",
+            "id_disciplina": "CAL1",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P29",
+            "id_turma": "SI5",
+            "id_disciplina": "ESD",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P05",
+            "id_turma": "SI7",
+            "id_disciplina": "ESW",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P12",
+            "id_turma": "ADM3",
+            "id_disciplina": "ING",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P28",
+            "id_turma": "MET1",
+            "id_disciplina": "MET_",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P21",
+            "id_turma": "MET3",
+            "id_disciplina": "CAL1",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P23",
+            "id_turma": "MET7",
+            "id_disciplina": "MNU",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P02",
+            "id_turma": "SI3",
+            "id_disciplina": "ESW",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P09",
+            "id_turma": "SI5",
+            "id_disciplina": "ESW",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P29",
+            "id_turma": "SI7",
+            "id_disciplina": "CAL1",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P10",
+            "id_turma": "ADM1",
+            "id_disciplina": "FIN",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P13",
+            "id_turma": "ADM3",
+            "id_disciplina": "MKT",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P14",
+            "id_turma": "ADM5",
+            "id_disciplina": "MET_",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P30",
+            "id_turma": "ADM7",
+            "id_disciplina": "MKT",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P22",
+            "id_turma": "MET1",
+            "id_disciplina": "FAT",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P19",
+            "id_turma": "MET3",
+            "id_disciplina": "MNU",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P20",
+            "id_turma": "MET5",
+            "id_disciplina": "FAT",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P26",
+            "id_turma": "MET7",
+            "id_disciplina": "SIN",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P29",
+            "id_turma": "SI1",
+            "id_disciplina": "ESW",
+            "quantidade_aulas": 2
+        },
+        {
+            "id_professor": "P02",
+            "id_turma": "SI5",
+            "id_disciplina": "RDC",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P06",
+            "id_turma": "SI7",
+            "id_disciplina": "ESW",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P29",
+            "id_turma": "ADM1",
+            "id_disciplina": "DIR",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P23",
+            "id_turma": "MET1",
+            "id_disciplina": "CLI",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P19",
+            "id_turma": "MET3",
+            "id_disciplina": "FAT",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P30",
+            "id_turma": "MET5",
+            "id_disciplina": "MET_",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P27",
+            "id_turma": "MET7",
+            "id_disciplina": "FAT",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P09",
+            "id_turma": "SI1",
+            "id_disciplina": "ING",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P03",
+            "id_turma": "SI3",
+            "id_disciplina": "CAL2",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P06",
+            "id_turma": "SI5",
+            "id_disciplina": "MET_",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P02",
+            "id_turma": "SI7",
+            "id_disciplina": "CAL2",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P28",
+            "id_turma": "ADM1",
+            "id_disciplina": "MET_",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P13",
+            "id_turma": "ADM3",
+            "id_disciplina": "CAL1",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P16",
+            "id_turma": "ADM5",
+            "id_disciplina": "CON",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P10",
+            "id_turma": "ADM7",
+            "id_disciplina": "DIR",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P25",
+            "id_turma": "MET1",
+            "id_disciplina": "MNU",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P27",
+            "id_turma": "MET3",
+            "id_disciplina": "MET_",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P21",
+            "id_turma": "MET7",
+            "id_disciplina": "CLI",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P28",
+            "id_turma": "SI3",
+            "id_disciplina": "RDC",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P01",
+            "id_turma": "SI5",
+            "id_disciplina": "MET_",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P05",
+            "id_turma": "SI7",
+            "id_disciplina": "MET_",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P17",
+            "id_turma": "ADM3",
+            "id_disciplina": "DIR",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P13",
+            "id_turma": "ADM5",
+            "id_disciplina": "DIR",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P28",
+            "id_turma": "ADM7",
+            "id_disciplina": "FIN",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P24",
+            "id_turma": "MET1",
+            "id_disciplina": "CAL1",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P29",
+            "id_turma": "MET3",
+            "id_disciplina": "INS",
+            "quantidade_aulas": 1
+        },
+        {
+            "id_professor": "P20",
+            "id_turma": "MET7",
+            "id_disciplina": "FAT",
+            "quantidade_aulas": 1
+        }
+    ]
+}

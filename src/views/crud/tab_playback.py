@@ -41,6 +41,12 @@ class TabPlayback(QWidget):
         self.btn_export.setProperty("class", "success")
         top_panel.addWidget(self.btn_export)
         
+        self.btn_export_class = QPushButton("📊 Exportar por Turma (XLSX)")
+        self.btn_export_class.clicked.connect(self.export_excel_by_class)
+        self.btn_export_class.setEnabled(False)
+        self.btn_export_class.setProperty("class", "success")
+        top_panel.addWidget(self.btn_export_class)
+        
         self.lbl_info = QLabel("Nenhuma sessão carregada.")
         top_panel.addWidget(self.lbl_info)
         layout.addLayout(top_panel)
@@ -134,9 +140,11 @@ class TabPlayback(QWidget):
                     t_state.matrix = data["snapshots"][-1].matrix_copy
                     self.raw_state = t_state
                     self.btn_export.setEnabled(True)
+                    self.btn_export_class.setEnabled(True)
                 else:
                     self.raw_state = None
                     self.btn_export.setEnabled(False)
+                    self.btn_export_class.setEnabled(False)
                     
                 self.setup_from_data(data)
             except Exception as e:
@@ -146,6 +154,7 @@ class TabPlayback(QWidget):
         # Recebe o TimetableState recém rodado do QThread
         self.raw_state = state
         self.btn_export.setEnabled(True)
+        self.btn_export_class.setEnabled(True)
         
         data = {
             "snapshots": state.session_recorder.snapshots,
@@ -168,6 +177,21 @@ class TabPlayback(QWidget):
                 QMessageBox.information(self, "Sucesso", f"Excel exportado com sucesso em:\n{path}")
             except Exception as e:
                 QMessageBox.critical(self, "Erro", f"Erro na exportação: {e}")
+
+    def export_excel_by_class(self):
+        if not hasattr(self, 'raw_state') or not self.raw_state:
+            QMessageBox.warning(self, "Erro", "Nenhum estado válido para exportar.")
+            return
+            
+        path, _ = QFileDialog.getSaveFileName(self, "Salvar Excel por Turma", "Horario_Por_Turma.xlsx", "Excel Files (*.xlsx)")
+        if path:
+            try:
+                from src.utils.exporter import ExportManager
+                exporter = ExportManager(self.raw_state)
+                exporter.export_by_class_to_excel(path)
+                QMessageBox.information(self, "Sucesso", f"Excel por turma exportado com sucesso em:\n{path}")
+            except Exception as e:
+                QMessageBox.critical(self, "Erro", f"Erro na exportação por turma: {e}")
 
     def setup_from_data(self, data):
         self.session_data = data
