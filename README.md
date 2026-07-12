@@ -6,6 +6,9 @@
 > Autores: Allysson Bruno Chaves Assunção · Moisés Emanuel Reis da Cruz  
 > Referências: Souza, Maculan e Ochi (2003) · Zhang, Liu e M'Hallah (2010)
 
+# Vídeo de Apresentação do Projeto
+>*https://youtu.be/uBU3sdGi7xc*
+
 ---
 
 ## Índice
@@ -652,7 +655,7 @@ Sidebar de navegação com 6 seções:
 | `Professores (H2)`      | CRUD de professores + configuração de indisponibilidades       |
 | `Demandas (H3, H4)`     | CRUD de demandas curriculares (vínculo prof-turma-disciplina) |
 
-> **[Inserir screenshot da aba Workstation — vista da sidebar e formulário de Professores]**
+> <img width="3440" height="1408" alt="Screenshot From 2026-07-12 15-05-19" src="https://github.com/user-attachments/assets/8ef6d574-6aef-438d-9fce-8a11dbb5a088" />
 
 ### 11.2 Aba 2: Execution Hub 🚀
 
@@ -665,7 +668,7 @@ Hub de disparo da otimização. Permite selecionar a fonte de dados:
 
 A execução ocorre em `QThread` separada (`EngineWorker`) para não bloquear a UI. Um `QProgressDialog` informa o usuário durante o processamento.
 
-> **[Inserir screenshot do Execution Hub — botão "🚀 Iniciar Otimização" em destaque]**
+> <img width="3440" height="1408" alt="Screenshot From 2026-07-12 15-05-40" src="https://github.com/user-attachments/assets/0e495225-7b2c-4fef-8822-77aeeb31eb02" />
 
 ### 11.3 Aba 3: Audit & Playback 🎬
 
@@ -679,7 +682,7 @@ Após a execução (ou ao carregar um arquivo `.pickle`), esta aba apresenta:
 - **Timeline/Slider:** Navegar entre snapshots manualmente ou em modo `▶ Play` com velocidade ajustável (1×–100×).
 - **Exportação Excel:** Gera arquivo `.xlsx` formatado com a grade final otimizada.
 
-> **[Inserir screenshot da aba Audit & Playback — slider, HUD e grade colorida]**
+> <img width="3440" height="1408" alt="Screenshot From 2026-07-12 15-06-14" src="https://github.com/user-attachments/assets/1ec923c7-53b8-401f-b8e5-e89e4be6c853" />
 
 ---
 
